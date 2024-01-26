@@ -8,7 +8,7 @@ type Props = {
 
 const CartWrap: React.FC<Props> = ({ children }) => {
   return (
-    <div className="bg-white rounded-lg shadow-md p-6 mb-4">
+    <div className="rounded-lg shadow-md p-6 mb-4">
       <table className="w-full">
         <thead>
           <tr>

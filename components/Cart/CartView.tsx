@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { CartItemType } from "@/app/types/CartItemType";
-import { getSS } from "@/utils/storage";
+import { getSS, setSS } from "@/utils/storage";
 import {
   calculateSubTotal,
   calculateTaxes,
@@ -11,47 +11,66 @@ import {
 import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
 import Image from "next/image";
 import CartWrap from "./CartWrap";
+import SideCart from "./SideCart";
 
 type Props = {
-  data: CartItemType[];
+  data: CartItemType[],
+  setter: Dispatch<SetStateAction<CartItemType[]>>
 };
 
-const CartView: React.FC<Props> = ({ data }) => {
-  const [subTotal, setSubtotal] = useState(calculateSubTotal(data));
-  let taxes: number = calculateTaxes(subTotal);
-  let total: number = calculateTotal(subTotal, taxes);
-  const empty: boolean = data?.length === 0;
-
-  let foo = data !== null;
+const CartView: React.FC<Props> = ({ data, setter }) => {
+  const [subTotal, setSubtotal] = useState<number>(calculateSubTotal(data));
+  const [taxes, setTaxes] = useState<number>(calculateTaxes(subTotal));
+  const [total, setTotal] = useState<number>(0);
+  // const [quantity, setQuantity] = useState<number>(0)
 
   useEffect(() => {
-    console.log(data);
-  }, [subTotal, data]);
+    setSS('cart',data);
+    setSubtotal(calculateSubTotal(data));
+    setTaxes(calculateTaxes(subTotal));
+    setTotal(calculateTotal(subTotal, taxes));
+  }, [data,subTotal,taxes]);
 
   const sourcer = (i: string) => {
     return `${process.env.NEXT_STRAPI_PUBLIC_URL}${i}`;
   };
 
+  const remove = (name:string) => {
+    const newCart:CartItemType[] = data.filter(i => i.name !== name);
+    setter(newCart);
+  }
+
+  const increase = (name:string) => {
+    const narr = [...data];
+    
+    for(let i=0; i < narr.length-1; i++){
+      if(narr[i].name === name){
+        console.log(narr[i].name) 
+      }
+    }
+    setter(narr);
+  }
+
   return (
-    <>
-      {data !== null ? (
+    <React.Fragment>
+      {data.length !== 0 ? (
         <div className="container mx-auto px-4 py-6">
-          <h1 className="text-2xl font-semibold mb-4">Shopping Cart</h1>
+          <h1 className="text-2xl font-semibold mb-6">Shopping Cart</h1>
           <div className="flex flex-col md:flex-row gap-4">
             <div className="md:w-3/4">
               <CartWrap>
                 {data.map((item) => (
-                  <tr key={item.id}>
+                  <tr key={item.name} >
                     <td className="py-4">
                       <div className="flex items-center">
-                        <Image
+                        {/* <Image
                           className="h-16 w-16 mr-4"
-                          src={""}
+                          src={sourcer(item.image)}
                           width={50}
                           height={50}
                           style={{ objectFit: "contain" }}
                           alt="Product image"
-                        />
+                        /> */}
                         <span className="font-semibold">{item.name}</span>
                       </div>
                     </td>
@@ -59,14 +78,14 @@ const CartView: React.FC<Props> = ({ data }) => {
                     <td className="py-4">
                       <div className="flex items-center">
                         <button
-                          onClick={() => item.quantity - 1}
+                          // onClick={() => item.quantity - 1}
                           className="border rounded-md py-2 px-4 mr-2"
                         >
                           -
                         </button>
                         <span className="text-center w-8">{item.quantity}</span>
                         <button
-                          onClick={() => item.quantity + 1}
+                          onClick={() => increase(item.name)}
                           className="border rounded-md py-2 px-4 ml-2"
                         >
                           +
@@ -74,7 +93,7 @@ const CartView: React.FC<Props> = ({ data }) => {
                       </div>
                     </td>
                     <td className="py-4 px-6 text-red-500">
-                      <span className="cursor-pointer">
+                      <span onClick={()=>remove(item.name)} className="cursor-pointer">
                         <RemoveShoppingCartIcon />
                       </span>
                     </td>
@@ -83,31 +102,11 @@ const CartView: React.FC<Props> = ({ data }) => {
               </CartWrap>
             </div>
             <div className="md:w-1/4">
-              <div className="bg-white rounded-lg shadow-md p-6">
-                <h2 className="text-lg font-semibold mb-4">Summary</h2>
-                <div className="flex justify-between mb-2">
-                  <span>Subtotal</span>
-                  <span>{`$${subTotal}`}</span>
-                </div>
-                <div className="flex justify-between mb-2">
-                  <span>Taxes</span>
-                  <span>{`$${taxes}`}</span>
-                </div>
-                <div className="flex justify-between mb-2">
-                  <span>Shipping</span>
-                  <span>Free</span>
-                </div>
-                <hr className="my-2" />
-                <div className="flex justify-between mb-2">
-                  <span className="font-semibold">Total</span>
-                  <span className="font-semibold">{`$${total.toFixed(
-                    2
-                  )}`}</span>
-                </div>
-                <button className="bg-custo-50 text-white py-2 px-4 rounded-lg mt-4 w-full">
-                  Place Order
-                </button>
-              </div>
+              <SideCart 
+                subtotal={subTotal} 
+                taxes={taxes} 
+                total={total} 
+              />
             </div>
           </div>
         </div>
@@ -131,47 +130,17 @@ const CartView: React.FC<Props> = ({ data }) => {
               </CartWrap>
             </div>
             <div className="md:w-1/4">
-              <div className="bg-white rounded-lg shadow-md p-6">
-                <h2 className="text-lg font-semibold mb-4">Summary</h2>
-                <div className="flex justify-between mb-2">
-                  <span>Subtotal</span>
-                  <span>{`$${subTotal}`}</span>
-                </div>
-                <div className="flex justify-between mb-2">
-                  <span>Taxes</span>
-                  <span>{`$${taxes}`}</span>
-                </div>
-                <div className="flex justify-between mb-2">
-                  <span>Shipping</span>
-                  <span>Free</span>
-                </div>
-                <hr className="my-2" />
-                <div className="flex justify-between mb-2">
-                  <span className="font-semibold">Total</span>
-                  <span className="font-semibold">{`$${total.toFixed(
-                    2
-                  )}`}</span>
-                </div>
-                <button className="bg-custo-50 text-white py-2 px-4 rounded-lg mt-4 w-full">
-                  Place Order
-                </button>
-              </div>
+              <SideCart 
+                subtotal={subTotal} 
+                taxes={taxes} 
+                total={total} 
+              />
             </div>
           </div>
         </div>
       )}
-    </>
+    </React.Fragment>
   );
 };
 
 export default CartView;
-
-// export const switcher = (items:CartItemType[]) => {
-//   let r:boolean = !items;
-//   switch(!r){
-//     case items !== null:
-//       return (
-
-//       )
-//   }
-// }

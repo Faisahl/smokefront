@@ -6,6 +6,8 @@ import NavLinks from "./NavLinks";
 import Button from "../Button";
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
+import malaflor from '../../public/logo-malaflor.png'
+import Image from "next/image";
 
 const Navbar = () => {
     const [open, setOpen] = useState<boolean>(false);
@@ -14,7 +16,14 @@ const Navbar = () => {
     <nav className="bg-custo-51">
         <div className="flex items-center font-medium justify-around text-white">
           <div className="z-50 p-5 md:w-auto w-full flex justify-between">
-            <Link href='/'><img src={'/toasty-min.png'} alt="logo" className="md:cursor-pointer h-16 w-14" /></Link>
+            <Link href='/'>
+              <Image 
+                alt={'malaflor logo'}
+                src={ malaflor }
+                width={65}
+              />
+              {/* <img src={'/logo-malaflor.png'} alt="logo" className="md:cursor-pointer h-16 w-14" /> */}
+            </Link>
             <div className="text-3xl md:hidden block" onClick={() => setOpen(!open)}>
               {open ? <CloseIcon fontSize="large" /> : <MenuIcon fontSize="large" />}
             </div>

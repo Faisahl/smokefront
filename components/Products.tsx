@@ -32,16 +32,16 @@ const Products: React.FC<Props> = ({ data }) => {
     <>
     {data.map((p: ProductObject) => {
         const { name, price, sku } = p.attributes
-        // const image = p.attributes.image.data[0].attributes.formats.thumbnail;
+        const image = p.attributes.image.data[0].attributes.formats.thumbnail;
         return (
             <div key={p.id} className="">
-                {/* <img 
+                <img 
                     src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${image.url}`}
                     alt="Dutches" 
                     className="mx-auto object-cover object-center lg:hover:opacity-75" 
                     width={`${image.width}px`}
                     height={`${image.height}px`}
-                /> */}
+                />
                 <div className="px-4 py-3 w-72">
                     <span className="cursor-default text-gray-400 mr-3 uppercase text-xs">Swisher Sweets</span>
                     <p className="cursor-pointer text-lg font-bold text-black truncate block capitalize">{name}</p>

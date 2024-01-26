@@ -1,5 +1,6 @@
 import { CartItemType } from "@/app/types/CartItemType";
 import { ProductObject } from "@/app/types/ProductTypes";
+import { setSS } from "./storage";
 
 export const addCart = (
   cart: CartItemType[],
@@ -7,12 +8,8 @@ export const addCart = (
   meti: ProductObject
 ) => {
   let obj: CartItemType;
-  const existing = cart.find((i: CartItemType) => i.id === meti.id);
+  const existing = cart.find((i: CartItemType) => i.name === meti.attributes.name);
   if (!existing) {
-    // let j = cart.map((ci: CartItemType) => {
-    //      return { ...ci, quantity: ci.quantity + 1 };
-    // });
-    // setCart(j)
     obj = {
       id: meti.attributes.id,
       name: meti.attributes.name,
@@ -23,21 +20,31 @@ export const addCart = (
       image: meti.attributes.image.data[0].attributes.formats.thumbnail.url,
     };
     setCart([...cart, obj]);
-  }
+  } 
+  // else {
+  //     const updated = updateItemQuantity(cart, meti);
+  //     setSS('cart', updated)
+  //     // setCart(updated);
+  //     // console.log(cart)
+  // }
 };
 
-// export const updateItemQuantity = (cart: CartItemType[], item: CartItemType) => {
-//     const increase: CartItemType[] = cart.map((ci:CartItemType) => {
-//         ci.id === item.id ? { ...item, quantity: item.quantity+1 } : item;
-//     });
-//     return increase;
-// };
+export const updateItemQuantity = (cart: CartItemType[], item: ProductObject): CartItemType[] => {
+  const narr = [...cart];
+    for(let i=0; i < narr.length-1; i++){
+      if(narr[i].name === item.attributes.name){
+        // console.log(cart[i.id])
+        narr[i].quantity = narr[i].quantity + 1; 
+      }
+    }
+      return narr;
+};
 
-export const calculateTaxes = (st: number): number => {
-  if (st !== 0) {
-    const i: number = st * 0.06; // fake sales tax
-    const j: number = st * 0.03; // fake credit card tax
-    const k: number = st * 0.07; // fake fake tax
+export const calculateTaxes = (subtotal: number): number => {
+  if (subtotal !== 0) {
+    const i: number = subtotal * 0.06; // fake sales tax
+    const j: number = subtotal * 0.03; // fake credit card tax
+    const k: number = subtotal * 0.07; // fake fake tax
 
     return Number((i + j + k).toFixed(2));
   }
@@ -46,18 +53,20 @@ export const calculateTaxes = (st: number): number => {
 };
 
 export const calculateSubTotal = (items: any): number => {
+  
   if (items) {
-    return items.reduce(
+    let j: number = items.reduce(
       (sum: number, { price, quantity }: { price: number; quantity: number }) =>
-        sum + price * quantity,
-      0
+        sum + price * quantity, 0
     );
+    return Number(j.toFixed(2))
   }
   return 0;
 };
 
-export const calculateTotal = (st: number, t: number) => {
-  return st + t;
+export const calculateTotal = (subtotal: number, tax: number) => {
+  if(!subtotal || !tax) return 0;
+  return Number((subtotal + tax).toFixed(2))
 };
 
 export const handleAlert = (

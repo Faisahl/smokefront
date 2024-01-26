@@ -44,14 +44,14 @@ const NavLinks = ({ setMenu, isOpen } : Props) => {
               </h1>
               {link.submenu && (
                 <div>
-                  <div className="absolute top-12 hidden group-hover:md:block hover:md:block">
-                    <div className="py-3">
+                  <div className="absolute top-14 hidden group-hover:md:block hover:md:block">
+                    <div className="py-3 ">
                       <div
                         className="w-4 h-4 left-3 absolute 
-                      mt-1 bg-custo-50 rotate-45 "
+                      mt-1 bg-custo-51 rotate-45"
                       ></div>
                     </div>
-                    <div className="bg-custo-50 p-5 grid grid-cols-3 gap-5 shadow-2xl">
+                    <div className="bg-custo-51 p-5 grid grid-cols-3 gap-5 shadow-2xl">
                       {link.sublinks.map((mysublinks) => (
                         <div key={mysublinks.Head}>
                           <h1 className="text-lg font-semibold text-white cursor-default">
@@ -60,7 +60,7 @@ const NavLinks = ({ setMenu, isOpen } : Props) => {
                           {mysublinks.sublink.map((slink: NavLinkSubSubType) => (
                             <li key={slink.name} className="text-sm text-white my-2.5">
                               <Link
-                                className="md:hover:text-custo-51"
+                                className="md:hover:text-custo-50"
                                 href={slink.link}
                               >
                                 {slink.name}

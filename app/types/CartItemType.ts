@@ -2,7 +2,7 @@ export type CartItemType = {
     id: number
     name: string,
     brand: string,
-    description?: string,
+    // description?: string,
     price: number,
     sku: string,
     quantity: number,
