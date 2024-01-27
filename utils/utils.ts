@@ -1,6 +1,6 @@
 import { CartItemType } from "@/app/types/CartItemType";
 import { ProductObject } from "@/app/types/ProductTypes";
-import { setSS } from "./storage";
+import { Dispatch, SetStateAction } from "react";
 
 export const addCart = (
   cart: CartItemType[],
@@ -21,23 +21,22 @@ export const addCart = (
     };
     setCart([...cart, obj]);
   } 
-  // else {
-  //     const updated = updateItemQuantity(cart, meti);
-  //     setSS('cart', updated)
-  //     // setCart(updated);
-  //     // console.log(cart)
-  // }
+  else {
+      updateQuantity('plus',existing, cart, setCart);
+  }
 };
 
-export const updateItemQuantity = (cart: CartItemType[], item: ProductObject): CartItemType[] => {
-  const narr = [...cart];
-    for(let i=0; i < narr.length-1; i++){
-      if(narr[i].name === item.attributes.name){
-        // console.log(cart[i.id])
-        narr[i].quantity = narr[i].quantity + 1; 
-      }
+export const updateQuantity = (calc:string , item:CartItemType, data: CartItemType[] ,setter: Dispatch<SetStateAction<CartItemType[]>>) => {
+  const newArr = [...data];
+  for(let i = 0; i < newArr.length; i++){
+    if(newArr[i].name === item.name && calc === 'plus'){
+      newArr[i].quantity += 1;
     }
-      return narr;
+    if(newArr[i].name === item.name && calc === 'minus' && newArr[i].quantity > 1){
+      newArr[i].quantity -= 1;
+    }
+  }
+  setter(newArr);
 };
 
 export const calculateTaxes = (subtotal: number): number => {
@@ -48,34 +47,38 @@ export const calculateTaxes = (subtotal: number): number => {
 
     return Number((i + j + k).toFixed(2));
   }
-
   return 0;
 };
 
 export const calculateSubTotal = (items: any): number => {
-  
   if (items) {
     let j: number = items.reduce(
       (sum: number, { price, quantity }: { price: number; quantity: number }) =>
         sum + price * quantity, 0
     );
-    return Number(j.toFixed(2))
+    return Number(j.toFixed(2));
   }
   return 0;
 };
 
 export const calculateTotal = (subtotal: number, tax: number) => {
   if(!subtotal || !tax) return 0;
-  return Number((subtotal + tax).toFixed(2))
+  return Number((subtotal + tax).toFixed(2));
 };
 
 export const handleAlert = (
-  setAdded: React.Dispatch<React.SetStateAction<boolean>>,
-  setSelected: React.Dispatch<React.SetStateAction<string>>
+  setBool: React.Dispatch<React.SetStateAction<boolean>>,
+  setString?: React.Dispatch<React.SetStateAction<string>>
 ) => {
-  setAdded(true);
-  setTimeout(() => {
-    setAdded(false);
-    setSelected("");
-  }, 1000);
+  setBool(true);
+  if(setString){
+    setTimeout(() => {
+      setBool(false);
+      setString("");
+    }, 1000);
+  } else {
+    setTimeout(() => {
+      setBool(false);
+    }, 1000);
+  }
 };

@@ -12,11 +12,12 @@ export default function App(){
             className="h-screen bg-cover md:bg-top bg-center"
         >
             <Banner />
-            
             <Hero />
-            <Promotional />
-            <ReviewSet />
-            <Footer />
+            <div className='dark:bg-gray-800'>
+                <Promotional />
+                <ReviewSet />
+                <Footer />
+            </div>
         </section>
     )
 }

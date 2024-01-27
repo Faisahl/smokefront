@@ -12,7 +12,15 @@ const page: React.FC = ({}) => {
 
   useEffect(() => {}, [checkoutItems]);
 
-  return <CartView data={checkoutItems} setter={setCheckoutItems} />;
+  return (
+    <section className="dark:bg-gray-800 h-screen">
+      <CartView 
+        data={checkoutItems} 
+        setter={setCheckoutItems} 
+      />
+    </section>
+    
+  )
 };
 
 export default page;

@@ -1,17 +1,25 @@
 'use client'
 
-import React, { Dispatch, SetStateAction, useEffect } from 'react'
+import Link from 'next/link'
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
+import CheckoutButton from '../checkout/CheckoutButton'
+import { handleAlert } from '@/utils/utils'
+import { UUID } from 'crypto'
+import { CartItemType } from '@/app/types/CartItemType'
+import { setSS } from '@/utils/storage'
 
 type Props = {
   subtotal: number,
   taxes: number,
-  total: number
+  total: number,
+  data?: CartItemType[]
 }
 
-const SideCart: React.FC<Props> = ({ subtotal, taxes, total }) => {
+const SideCart: React.FC<Props> = ({ data, subtotal, taxes, total }) => {
+  const [alert, setAlert] = useState<boolean>(false);
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-6">
+    <div className="bg-white dark:bg-gray-800 dark:border dark:border-gray-700 rounded-lg shadow-md dark:shadow-lg p-6">
       <h2 className="text-lg font-semibold mb-4">Summary</h2>
       <div className="flex justify-between mb-2">
         <span>Subtotal</span>
@@ -30,9 +38,17 @@ const SideCart: React.FC<Props> = ({ subtotal, taxes, total }) => {
         <span className="font-semibold">Total</span>
         <span className="font-semibold">{`$${total}`}</span>
       </div>
-      <button className="bg-custo-50 text-white py-2 px-4 rounded-lg mt-4 w-full">
-        Place Order
-      </button>
+      <p className={`${alert ? 'block' : 'hidden'} text-center mr-2 text-s text-red-500 font-semibold`}>  
+          Please add items to proceed
+      </p>
+
+      <CheckoutButton 
+        data={data}
+        sub={subtotal}
+        tax={taxes}
+        tot={total}
+        setter={setAlert}
+      />
     </div>
   )
 }

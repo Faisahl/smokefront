@@ -44,9 +44,9 @@ const Products: React.FC<Props> = ({ data }) => {
                 />
                 <div className="px-4 py-3 w-72">
                     <span className="cursor-default text-gray-400 mr-3 uppercase text-xs">Swisher Sweets</span>
-                    <p className="cursor-pointer text-lg font-bold text-black truncate block capitalize">{name}</p>
+                    <p className="cursor-pointer text-lg font-bold text-black dark:text-white truncate block capitalize">{name}</p>
                     <div className="flex items-center">
-                        <p className="text-lg font-semibold text-black cursor-default my-2">{price}</p>
+                        <p className="text-lg font-semibold text-black dark:text-white cursor-default my-2">{price}</p>
                         <div className="ml-auto">
                             <CartAdder  
                                 setter={add} 

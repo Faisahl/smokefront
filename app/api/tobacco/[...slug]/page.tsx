@@ -12,9 +12,9 @@ const page: React.FC = ({}) => {
   const path = pa[pa.length-1]
   
   return (
-    <>
+    <section className='bg-white dark:bg-gray-800 h-screen'>
       <ProductList path={path} />
-    </>
+    </section>
   )
 }
 
