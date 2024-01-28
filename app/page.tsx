@@ -13,7 +13,7 @@ export default function App(){
         >
             <Banner />
             <Hero />
-            <div className='dark:bg-gray-800'>
+            <div className='bg-white dark:bg-gray-800'>
                 <Promotional />
                 <ReviewSet />
                 <Footer />

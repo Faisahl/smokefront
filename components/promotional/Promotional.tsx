@@ -29,7 +29,7 @@ const Promotional = () => {
                             className="mt-3 text-custo-51 inline-flex items-center"
                         >
                             Learn More
-                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                            <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
                                 <path d="M5 12h14M12 5l7 7-7 7"></path>
                             </svg>
                         </Link>
@@ -40,7 +40,7 @@ const Promotional = () => {
                 <h2 className=" text-lg title-font font-medium mb-3">Glass Pieces</h2>
                 <p className="leading-relaxed text-base">Elevate your smoking ritual with our curated collection of glass masterpieces, where form meets function for an unparalleled and stylish experience.</p>
                 <a className="mt-3 text-custo-51 inline-flex items-center">Learn More
-                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                    <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
                     <path d="M5 12h14M12 5l7 7-7 7"></path>
                     </svg>
                 </a>
@@ -51,7 +51,7 @@ const Promotional = () => {
                 <h2 className=" text-lg title-font font-medium mb-3">Vaporizers</h2>
                 <p className="leading-relaxed text-base">Dive into a world of pure delight with our incredible lineup of vaporizers.</p>
                 <a className="mt-3 text-custo-51 inline-flex items-center">Learn More
-                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                    <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
                     <path d="M5 12h14M12 5l7 7-7 7"></path>
                     </svg>
                 </a>
@@ -62,7 +62,7 @@ const Promotional = () => {
                 <h2 className=" text-lg title-font font-medium mb-3">Hookah</h2>
                 <p className="leading-relaxed text-base">Ignite the essence of relaxation with our premium hookahs and exquisite shisha blends.</p>
                 <a className="mt-3 text-custo-51 inline-flex items-center">Learn More
-                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                    <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
                     <path d="M5 12h14M12 5l7 7-7 7"></path>
                     </svg>
                 </a>
