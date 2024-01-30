@@ -8,11 +8,9 @@ import {
   calculateTaxes,
   calculateTotal,
 } from "@/utils/utils";
-import Image from "next/image";
 import CartWrap from "./CartWrap";
 import SideCart from "./SideCart";
 import CartList from "./CartList";
-import { OrderObjectType, OrderType } from "@/app/types/OrderTypes";
 
 type Props = {
   data: CartItemType[],
@@ -24,83 +22,41 @@ const CartView: React.FC<Props> = ({ data, setter }) => {
   const [taxes, setTaxes] = useState<number>(calculateTaxes(subTotal));
   const [total, setTotal] = useState<number>(0);
 
-  // const [order, setOrder] = useState<OrderType[]>([]);
-  // const [loading, setLoading] = useState<boolean>(false);
-  // const empty: boolean = sub === 0 || tax === 0 || tot === 0;
-
-  // const makeObj = () => {
-  //   if(data){
-  //     let checkoutItems:OrderObjectType[]=[];
-  //       data.map(item => {
-  //         const obj: OrderObjectType = {
-  //           itemId: item.id,
-  //           name: item.name,
-  //           brand: item.brand,
-  //           price: item.price,
-  //           sku: item.sku,
-  //           quantity: item.quantity,
-  //           orderSubtotal: subTotal,
-  //           orderTaxes: taxes,
-  //           orderTotal: total
-  //         }
-  //         checkoutItems.push(obj)
-  //       })
-  //       // if(checkoutItems !== ){
-  //         const checkout: OrderType = {
-  //           orderId: self.crypto.randomUUID(),
-  //           cart: checkoutItems
-  //         // }
-  //       }
-  //       // return checkout
-  //       setOrder([checkout]);
-  //     } else {
-  //       setOrder([])
-  //       // handleAlert(setter);
-  //   }
-  // }
-
-  // const placeOrder = () => {
-  //   // setLoading(true);
-  //   makeObj()
-  //   if(order.length !== 0){
-  //     setSS('checkout', order);
-  //   }
-  //   // setTimeout(() => {
-  //   //   setLoading(false)
-  //   // }, 1000);
-  // }
-
+  // maybe extract this whole useeffect to its own small hook
+  // useCartMonitor or something
   useEffect(() => {
-    setSS('cart',data);
-    setSubtotal(calculateSubTotal(data));
-    setTaxes(calculateTaxes(subTotal));
-    setTotal(calculateTotal(subTotal, taxes));
+    cartMonitor('cart',data); 
   }, [data,subTotal]);
+
+  const cartMonitor = (ssKey: string, data: CartItemType[]):void => {
+      setSS(ssKey,data);
+      setSubtotal(calculateSubTotal(data));
+      setTaxes(calculateTaxes(subTotal));
+      setTotal(calculateTotal(subTotal, taxes));
+  }
 
   const sourcer = (i: string) => {
     return `${process.env.NEXT_STRAPI_PUBLIC_URL}${i}`;
   };
 
-  const remove = (name:string) => {
+  const remove = (name:string):void => {
     const newCart:CartItemType[] = data.filter(i => i.name !== name);
     setter(newCart);
   }
 
   return (
-    <React.Fragment>
+    <>
       {data.length !== 0 ? (
-        <div className="container mx-auto px-4 py-6 dark:text-white">
+        <div className="container mx-auto px-4 py-6 text-gray-900 dark:text-white">
           <h1 className="text-2xl font-semibold mb-6">Shopping Cart</h1>
           <div className="flex flex-col md:flex-row gap-4">
             <div className="md:w-3/4">
               <CartWrap>
-                {/* <tbody className="dark:shadow-2xl"> */}
                   <CartList 
                     data={data} 
                     remover={remove} 
                     setter={setter}
                   />
-                {/* </tbody> */}
               </CartWrap>
             </div>
             <div className="md:w-1/4">
@@ -142,7 +98,7 @@ const CartView: React.FC<Props> = ({ data, setter }) => {
           </div>
         </div>
       )}
-    </React.Fragment>
+    </>
   );
 };
 

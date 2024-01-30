@@ -6,7 +6,9 @@ import CheckoutButton from '../checkout/CheckoutButton'
 import { handleAlert } from '@/utils/utils'
 import { UUID } from 'crypto'
 import { CartItemType } from '@/app/types/CartItemType'
-import { setSS } from '@/utils/storage'
+import { getSS, removeSS, setSS } from '@/utils/storage'
+import { OrderObjectType, OrderType } from '@/app/types/OrderTypes'
+import { create } from 'domain'
 
 type Props = {
   subtotal: number,
@@ -17,6 +19,47 @@ type Props = {
 
 const SideCart: React.FC<Props> = ({ data, subtotal, taxes, total }) => {
   const [alert, setAlert] = useState<boolean>(false);
+  const [order, setOrder] = useState<OrderType[]>([]);
+
+  useEffect(()=>{
+    if(!data){
+      setOrder([]);
+      removeSS('checkout');
+    }
+    if(data && data.length !== 0){
+      createOrder(data);
+    }
+  },[data]);
+
+  const createOrder = (items:CartItemType[]) => {
+    if(items){
+      let orderArr: OrderObjectType[] = [];
+      items.map(item => {
+        const obj: OrderObjectType = {
+          itemId: item.id,
+          name: item.name,
+          brand: item.brand,
+          price: item.price,
+          sku: item.sku,
+          quantity: item.quantity,
+          orderSubtotal: subtotal,
+          orderTaxes: taxes,
+          orderTotal: total
+        }
+        orderArr.push(obj)
+      })
+      if(orderArr.length !== 0){
+        const checkout: OrderType = {
+          orderId: self.crypto.randomUUID(),
+          cart: orderArr
+        }
+        setOrder([checkout]);
+      }
+    }
+  };
+
+
+
 
   return (
     <div className="bg-white dark:bg-gray-800 dark:border dark:border-gray-700 rounded-lg shadow-md dark:shadow-lg p-6">
@@ -43,10 +86,7 @@ const SideCart: React.FC<Props> = ({ data, subtotal, taxes, total }) => {
       </p>
 
       <CheckoutButton 
-        data={data}
-        sub={subtotal}
-        tax={taxes}
-        tot={total}
+        data={order}
         setter={setAlert}
       />
     </div>

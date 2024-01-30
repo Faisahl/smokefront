@@ -9,14 +9,14 @@ const Promotional = () => {
   return (
     
     <section className="text-gray-700 body-font border-t border-gray-200">
-        <div className="container px-5 py-24 mx-auto flex flex-wrap">
+        <div className="container px-5 py-20 mx-auto flex flex-wrap">
             <div className="lg:w-1/2 w-full mb-10 lg:mb-0 rounded-lg overflow-hidden">
                 <Image 
                     alt="feature"
                     src={ storefront }
-                    className="object-cover object-center h-full w-full"
+                    className="object-cover object-center rounded-md"
                     width={600}
-                    height={600}
+                    // height={500}
                 />
             </div>
             <div className="flex flex-col flex-wrap lg:py-6 -mb-10 lg:w-1/2 lg:pl-12 lg:text-left text-center my-10">

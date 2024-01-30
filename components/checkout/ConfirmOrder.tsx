@@ -5,6 +5,7 @@ import { isAuthenticated } from "@/utils/Auth";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import Custom401 from "../errors/401";
+// import { IsAuthContext } from "@/ctx/IsAuthContext";
 
 // type Props = {};
 
@@ -13,7 +14,7 @@ const ConfirmOrder: React.FC = ({}) => {
   const [lastName, setLastName] = useState<string>('')
   const [email, setEmail] = useState<string>('')
   const [phoneNo, setPhoneNo] = useState<string>('')
-
+  // const { isAuth } = useState(IsAuthContext);
 
   const {
     register,
@@ -114,7 +115,7 @@ const ConfirmOrder: React.FC = ({}) => {
                       minLength: 6,
                       maxLength: 12,
                     })}
-                    className="block text-gray-700 light:border dark:bg-gray-700 dark:text-white mb-1 p-2 rounded-lg"
+                    className="block text-gray-700 border dark:bg-gray-700 dark:text-white dark:border-none mb-1 p-2 rounded-lg"
                     id="tel"
                     onChange={(e)=>setPhoneNo(e.target.value)}
                   />
@@ -130,7 +131,7 @@ const ConfirmOrder: React.FC = ({}) => {
                     readOnly={true}
                     type="text"
                     placeholder="&le; 15 minutes"
-                    className="block text-gray-700 light:border dark:bg-gray-700 dark:text-white mb-1 p-2 rounded-lg"
+                    className="block text-gray-700 border dark:bg-gray-700 dark:text-white mb-1 p-2 dark:border-none rounded-lg"
                     id="pickuptime"
                   />
                 </div>

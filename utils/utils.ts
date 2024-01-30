@@ -30,10 +30,10 @@ export const updateQuantity = (calc:string , item:CartItemType, data: CartItemTy
   const newArr = [...data];
   for(let i = 0; i < newArr.length; i++){
     if(newArr[i].name === item.name && calc === 'plus'){
-      newArr[i].quantity += 1;
+      newArr[i].quantity++;
     }
     if(newArr[i].name === item.name && calc === 'minus' && newArr[i].quantity > 1){
-      newArr[i].quantity -= 1;
+      --newArr[i].quantity;
     }
   }
   setter(newArr);
@@ -45,7 +45,7 @@ export const calculateTaxes = (subtotal: number): number => {
     const j: number = subtotal * 0.03; // fake credit card tax
     const k: number = subtotal * 0.07; // fake fake tax
 
-    return Number((i + j + k).toFixed(2));
+    return parseFloat((i + j + k).toFixed(2));
   }
   return 0;
 };
@@ -56,14 +56,14 @@ export const calculateSubTotal = (items: any): number => {
       (sum: number, { price, quantity }: { price: number; quantity: number }) =>
         sum + price * quantity, 0
     );
-    return Number(j.toFixed(2));
+    return parseFloat(j.toFixed(2));
   }
   return 0;
 };
 
 export const calculateTotal = (subtotal: number, tax: number) => {
   if(!subtotal || !tax) return 0;
-  return Number((subtotal + tax).toFixed(2));
+  return parseFloat((subtotal + tax).toFixed(2));
 };
 
 export const handleAlert = (

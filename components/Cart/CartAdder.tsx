@@ -22,7 +22,7 @@ const CartAdder: React.FC<Props> = ({ item, setter, selected }) => {
         Item Added!
       </p>
       <AddShoppingCartIcon 
-        className="text-black dark:text-white dark:hover:text-custo-51" 
+        className="text-black dark:text-white lg:hover:text-custo-51" 
       />
     </div>
   );

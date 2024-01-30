@@ -1,22 +1,16 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-
 const Banner: React.FC = () => {
-  const [closed, setClosed] = useState<boolean>(false);
-
   return (
     <div
-      className={`${
-        !closed ? "" : "hidden"
-      } -z-50 relative isolate flex items-center gap-x-6 overflow-hidden light:bg-gray-50 dark:dark:bg-gray-800 px-6 py-2.5 sm:px-3.5 sm:before:flex-1`}
+      className={`-z-50 relative isolate flex items-center gap-x-6 overflow-hidden light:bg-gray-50 dark:dark:bg-gray-800 px-6 py-2.5 sm:px-3.5 sm:before:flex-1`}
     >
-      <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+      <div className="flex flex-wrap items-center text-center gap-x-4 gap-y-2">
         <p className="text-sm leading-6 light:text-gray-900 dark:text-white">
           <strong className="font-semibold">Grand Opening!</strong>
           <svg
             viewBox="0 0 2 2"
-            className="mx-2 inline h-0.5 w-0.5 fill-current"
+            className="mx-auto md:mx-2 my-1 md:my-0 block md:inline h-0.5 w-0.5 fill-current"
             aria-hidden="true"
           >
             <circle cx="1" cy="1" r="1" />

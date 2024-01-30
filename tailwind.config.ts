@@ -23,9 +23,6 @@ module.exports = {
   ],
   theme: {
     extend: {
-      gridTemplateColumns: {
-        '23': 'repeat(2, minmax(1fr, 2fr))'
-      },
       colors: {
         brown: {
           50: '#F2F1EB'

@@ -13,3 +13,15 @@ export const getSS = (key:string) => {
     }
     return null;
 }
+
+export const removeSS = (key:string) => {
+    if(typeof window !== 'undefined'){
+        sessionStorage.removeItem(key);
+    }
+}
+
+export const clearSS = () => {
+    if(typeof window !== 'undefined'){
+        sessionStorage.clear();
+    }
+}

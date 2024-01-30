@@ -10,15 +10,12 @@ export type ProductObject = {
 export type ProductType = {
     id: number
     name: string,
-    brand: string,
+    brand?: string,
+    brandName: string,
     description: string,
     price: number,
     sku: string,
     quantity?: number
     image: ImageResponse
-}
-
-export type ProductArray = {
-    items: ProductType[]
 }
 
