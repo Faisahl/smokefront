@@ -8,8 +8,10 @@ type Props = {
 
 const Sidebar: React.FC<Props> = ({ setValue, setBrand, brands }) => {
   return (
-    <div className="bg-white dark:bg-gray-800 dark:border dark:border-gray-700 rounded-lg shadow-md dark:shadow-lg p-6">
+    <div className="bg-white dark:bg-gray-800 dark:border dark:border-gray-700 rounded-lg shadow-md dark:shadow-lg p-6 ">
       <div className="h-fit">
+        <p className="text-gray-900 dark:text-white text-2xl mb-1">Filters</p>
+        <hr className="mb-4" />
         <label
           className="block mb-2 text-md text-gray-900 dark:text-white"
           htmlFor="prodsort"
@@ -40,16 +42,16 @@ const Sidebar: React.FC<Props> = ({ setValue, setBrand, brands }) => {
         </select>
 
         <label
-          className="block mt-4 text-gray-900 dark:text-white"
+          className="block my-4 text-gray-900 dark:text-white"
           htmlFor="brandradios"
         >
           Brands:
         </label>
-        <fieldset id="brandradios" className="">
+        <fieldset id="brandradios" className="grid grid-cols-2">
           {brands.map((brand) => (
             <div key={brand}>
               <input
-                className="mt-2"
+                className="mt-2 peer hidden"
                 type="radio"
                 id={brand}
                 name="radiobrand"
@@ -57,7 +59,7 @@ const Sidebar: React.FC<Props> = ({ setValue, setBrand, brands }) => {
                 onClick={(e) => setBrand(e.currentTarget.value)}
               />
               <label
-                className="ml-2 text-sm text-gray-900 dark:text-white"
+                className="cursor-pointer text-sm text-gray-900 dark:text-white border-2 border-gray-700 hover:border-custo-50 peer-checked:border-custo-50 rounded p-2"
                 htmlFor={brand}
               >
                 {brand}

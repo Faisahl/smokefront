@@ -60,7 +60,7 @@ const NavLinks = ({ setMenu, isOpen }: Props) => {
                   <div className="bg-custo-51 p-5  gap-5 shadow-2xl">
                     {link.sublinks.map((mysublinks) => (
                       <div key={mysublinks.Head}>
-                        <h3 className=" font-semibold text-white cursor-default mb-2 lg:hover:text-custo-50">
+                        <h3 className=" text-white cursor-default mb-2 lg:hover:text-custo-50">
                           <Link
                             href={mysublinks.link}
                           >

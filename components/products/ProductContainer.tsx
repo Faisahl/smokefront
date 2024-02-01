@@ -1,9 +1,10 @@
-"use client"
+"use client";
 
 import { ProductObject } from "@/app/types/ProductTypes";
 import React, { useEffect, useState } from "react";
 import ProductList from "./ProductList";
 import Sidebar from "./Sidebar";
+import { sortByAlphaAZ, sortHighLow, sortLowHigh } from "@/utils/sorting";
 
 const ProductContainer = ({ data }: { data: ProductObject[] }) => {
   const [sortedItems, setSortedItems] = useState<ProductObject[]>(data);
@@ -14,7 +15,7 @@ const ProductContainer = ({ data }: { data: ProductObject[] }) => {
     sortSwitcher(value);
     if (brand !== "") {
       filterBrand(brand, data);
-    } 
+    }
   }, [value, brand]);
 
   function sortSwitcher(key: string) {
@@ -50,14 +51,10 @@ const ProductContainer = ({ data }: { data: ProductObject[] }) => {
   const brands = brandList(data);
 
   return (
-    <div className="container">
+    <div className="container bg-white dark:bg-gray-800 h-screen">
       <div className="flex flex-col md:flex-row">
         <div className="md:w-1/4 pt-20 m-2">
-          <Sidebar 
-            setValue={setValue} 
-            setBrand={setBrand} 
-            brands={brands}
-          />
+          <Sidebar setValue={setValue} setBrand={setBrand} brands={brands} />
         </div>
         <div className="md:w-3/4">
           <ProductList data={sortedItems} />
@@ -68,30 +65,3 @@ const ProductContainer = ({ data }: { data: ProductObject[] }) => {
 };
 
 export default ProductContainer;
-
-function sortLowHigh(unsortedItems: ProductObject[]): ProductObject[] {
-  const sortedItems = [...unsortedItems].sort((a, b) => {
-    return a.attributes.price - b.attributes.price;
-  });
-  return sortedItems;
-}
-
-function sortHighLow(unsortedItems: ProductObject[]): ProductObject[] {
-  const sortedItems = [...unsortedItems].sort((a, b) => {
-    return b.attributes.price - a.attributes.price;
-  });
-  return sortedItems;
-}
-
-function sortByAlphaAZ(unsortedItems: ProductObject[]): ProductObject[] {
-  const sortedItems = [...unsortedItems].sort((a, b) => {
-    if (a.attributes.name.toLowerCase() < b.attributes.name.toLowerCase()) {
-      return -1;
-    }
-    if (a.attributes.name.toLowerCase() > b.attributes.name.toLowerCase()) {
-      return 1;
-    }
-    return 0;
-  });
-  return sortedItems;
-}

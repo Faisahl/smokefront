@@ -28,7 +28,7 @@ const Navbar = () => {
               {open ? <CloseIcon fontSize="large" /> : <MenuIcon fontSize="large" />}
             </div>
           </div>
-          <ul className="md:flex hidden uppercase items-center gap-8">
+          <ul className="md:flex hidden items-center gap-8">
             <li>
                 <span className="md:hover:text-custo-50 text-xl">
                   <Link 
