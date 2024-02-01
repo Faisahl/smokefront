@@ -1,18 +1,11 @@
-'use client'
-
 import React from 'react'
-import ProductList from '@/components/ProductList';
-import { usePathname } from 'next/navigation';
+import ProductContainer from '@/components/products/ProductContainer';
 
 type Props = {}
 
-const page: React.FC = ({  }) => {
-    const p:string = usePathname();
-    const pa:string[] = p.split('/');
-    const path = pa[pa.length-1]
-
+const page = ({params}: {params: {slug: string}}) => {
   return (
-    <ProductList path={path} />
+    <ProductContainer path={params.slug} />
   )
 }
 

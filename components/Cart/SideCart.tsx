@@ -87,6 +87,7 @@ const SideCart: React.FC<Props> = ({ data, subtotal, taxes, total }) => {
 
       <CheckoutButton 
         data={order}
+
         setter={setAlert}
       />
     </div>

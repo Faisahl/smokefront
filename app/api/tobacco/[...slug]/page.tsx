@@ -1,20 +1,15 @@
-'use client'
-
 import React from 'react'
-import { usePathname } from 'next/navigation'
-import ProductList from '@/components/ProductList'
-import ProductContainer from '@/components/ProductContainer'
+import ProductContainer from '@/components/products/ProductContainer'
+import { ProductResponse } from '@/app/types/ProductTypes';
+import { retrieve } from '@/utils/api';
 
-// type Props = {}
-
-const page: React.FC = ({}) => {
-  const p:string = usePathname();
-  const pa:string[] = p.split('/');
-  const path = pa[pa.length-1]
-  
+const page = async ({params}: {params: {slug: string}}) => {
+  const res: ProductResponse = await retrieve(
+    `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/${params.slug}?populate=*`
+  );
   return (
     <section className='bg-white dark:bg-gray-800 h-screen'>
-      <ProductContainer path={path} />
+      <ProductContainer data={res.data} />
     </section>
   )
 }
