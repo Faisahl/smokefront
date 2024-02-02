@@ -3,7 +3,7 @@ type ImageResponse = {
 }
 
 type ImageObject = {
-    id: number,
+    id: number
     attributes: ImageType
 }
 
@@ -12,22 +12,38 @@ type ImageType = {
 }
 
 type FormatType = {
-    thumbnail: ThumbnailObject,
-    small: SmallImageObject,
+    thumbnail: ThumbnailObject
+    small: SmallImageObject
+    medium: MediumImageObject
+    large: LargeImageObject
 }
 
 type ThumbnailObject = {
-    name: string,
+    name: string
     size: number
-    width: number,
-    height: number,
+    width: number
+    height: number
     url: string    
 }
 
 type SmallImageObject = {
-    name: string,
+    name: string
     size: number
-    width: number,
-    height: number,
+    width: number
+    height: number
+    url: string    
+}
+type MediumImageObject = {
+    name: string
+    size: number
+    width: number
+    height: number
+    url: string    
+}
+type LargeImageObject = {
+    name: string
+    size: number
+    width: number
+    height: number
     url: string    
 }

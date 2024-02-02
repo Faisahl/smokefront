@@ -1,7 +1,7 @@
-"use client";
+"use client"
 
 import React, { useEffect, useRef, useState } from "react";
-import { ProductObject } from "@/app/types/ProductTypes";
+import { ProductComponent, ProductObject } from "@/app/types/ProductTypes";
 import Products from "./Products";
 
 const ProductList: React.FC<{ data: ProductObject[] }> = ({ data }) => {
@@ -24,30 +24,3 @@ const ProductList: React.FC<{ data: ProductObject[] }> = ({ data }) => {
 };
 
 export default ProductList;
-
-function sortLowHigh(unsortedItems: ProductObject[]): ProductObject[] {
-  const sortedItems = [...unsortedItems].sort((a, b) => {
-    return a.attributes.price - b.attributes.price;
-  });
-  return sortedItems;
-}
-
-function sortHighLow(unsortedItems: ProductObject[]): ProductObject[] {
-  const sortedItems = [...unsortedItems].sort((a, b) => {
-    return b.attributes.price - a.attributes.price;
-  });
-  return sortedItems;
-}
-
-function sortByAlphaAZ(unsortedItems: ProductObject[]): ProductObject[] {
-  const sortedItems = [...unsortedItems].sort((a, b) => {
-    if (a.attributes.name.toLowerCase() < b.attributes.name.toLowerCase()) {
-      return -1;
-    }
-    if (a.attributes.name.toLowerCase() > b.attributes.name.toLowerCase()) {
-      return 1;
-    }
-    return 0;
-  });
-  return sortedItems;
-}

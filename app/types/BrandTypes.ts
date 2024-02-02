@@ -1,12 +1,28 @@
-type BrandResponse = {
+import { ProductResponse } from "./ProductTypes"
+
+export type BrandResponse = {
   data: BrandObject
 }
 
-type BrandObject = {
+export type BrandObject = {
   id: number,
   attributes: BrandType
 }
 
 type BrandType = {
   name: string
+}
+
+export type BrandObjResponse = {
+  data: BrandObjType[]
+}
+
+export type BrandObjType = {
+  id: number,
+  attributes: BrandObj
+}
+
+type BrandObj = {
+  name: string,
+  waterpipes: ProductResponse
 }

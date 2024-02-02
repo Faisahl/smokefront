@@ -1,5 +1,5 @@
 import { CartItemType } from "@/app/types/CartItemType";
-import { ProductObject } from "@/app/types/ProductTypes";
+import { ProductComponent, ProductObject } from "@/app/types/ProductTypes";
 import { Dispatch, SetStateAction } from "react";
 
 export const addCart = (
@@ -8,16 +8,16 @@ export const addCart = (
   meti: ProductObject
 ) => {
   let obj: CartItemType;
-  const existing = cart.find((i: CartItemType) => i.name === meti.attributes.name);
+  const existing = cart.find((i: CartItemType) => i.name === meti.attributes.base[0].name);
   if (!existing) {
     obj = {
-      id: meti.attributes.id,
-      name: meti.attributes.name,
-      brand: meti.attributes.brand ?? "Galaxy Smoke",
-      price: meti.attributes.price,
-      sku: meti.attributes.sku,
+      id: meti.id,
+      name: meti.attributes.base[0].name,
+      brand: meti.attributes.brand.data.attributes.name ?? "Mala Flor",
+      price: meti.attributes.base[0].price,
+      // sku: meti.attributes.sku,
       quantity: 1,
-      image: meti.attributes.image.data[0].attributes.formats.thumbnail.url,
+      image: meti.attributes.base[0].image.data[0].attributes.formats.thumbnail.url,
     };
     setCart([...cart, obj]);
   } 

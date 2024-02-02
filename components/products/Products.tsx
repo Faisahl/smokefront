@@ -1,13 +1,13 @@
-"use client"
+"use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { ProductObject } from "@/app/types/ProductTypes";
+import { ProductComponent, ProductObject } from "@/app/types/ProductTypes";
 import { addCart, handleAlert } from "@/utils/utils";
 import { getSS, setSS } from "@/utils/storage";
 import { CartItemType } from "@/app/types/CartItemType";
 import CartAdder from "../Cart/CartAdder";
 
-const Products: React.FC<{data: ProductObject[]}> = ({ data }) => {
+const Products: React.FC<{ data: ProductObject[] }> = ({ data }) => {
   const [cart, setCart] = useState<CartItemType[]>(() => getSS("cart") || []);
   const [inCart, setInCart] = useState<boolean>(false);
   const [selected, setSelected] = useState("");
@@ -17,7 +17,7 @@ const Products: React.FC<{data: ProductObject[]}> = ({ data }) => {
   }, [cart]);
 
   const add = (meti: ProductObject) => {
-    setSelected(meti.attributes.name);
+    setSelected(meti.attributes.base[0].name);
     if (cart) {
       addCart(cart, setCart, meti);
       handleAlert(setInCart, setSelected);
@@ -27,11 +27,11 @@ const Products: React.FC<{data: ProductObject[]}> = ({ data }) => {
   return (
     <>
       {data.map((p: ProductObject) => {
-        const { name, price, sku, brandName } = p.attributes;
-        const image = p.attributes.image.data[0].attributes.formats.thumbnail;
-        const brand = p.attributes.brand?.data.attributes.name
+        const { name, price, sku } = p.attributes.base[0];
+        const image = p.attributes.base[0].image.data[0].attributes.formats.thumbnail;
+        const brand = p.attributes.brand.data.attributes.name;
         return (
-          <div key={p.id} className="">
+          <div key={sku}>
             <img
               src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${image.url}`}
               alt="Dutches"
@@ -40,15 +40,15 @@ const Products: React.FC<{data: ProductObject[]}> = ({ data }) => {
               height={`${image.height}`}
             />
             <div className="px-4 py-3 w-72">
-              <span className="cursor-default text-gray-400 mr-3 uppercase text-xs">
+              <span className="tracking-wider cursor-default text-gray-400 mr-3 text-xs">
                 {brand ?? "Mala Flor"}
               </span>
-              <p className="cursor-pointer text-lg font-bold text-black dark:text-white truncate block capitalize">
+              <p className="tracking-wide cursor-pointer text-md font-medium text-black dark:text-white truncate block capitalize">
                 {name}
               </p>
               <div className="flex items-center">
-                <p className="text-lg font-semibold text-black dark:text-white cursor-default my-2">
-                  {price}
+                <p className="text-md text-black dark:text-white cursor-default my-1">
+                  {`$${price}`}
                 </p>
                 <div className="ml-auto">
                   <CartAdder setter={add} item={p} selected={selected} />

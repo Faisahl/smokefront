@@ -1,6 +1,6 @@
 import { ProductResponse } from "@/app/types/ProductTypes";
 
-export async function retrieve(url:string, options:object = {}): Promise<ProductResponse>{
+export async function retrieve(url:string, options:object = {}){
     console.log(url);
     let response;
     if(!options){

@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 
 import Footer from "@/components/Footer";
 import ReviewSet from "@/components/reviews/ReviewSet";
@@ -6,6 +6,7 @@ import Hero from "@/components/hero/Hero";
 import Promotional from "@/components/promotional/Promotional";
 import Banner from "@/components/Banner";
 import AuthProvider from "@/components/ctx/AuthProvider";
+import ProductCollection from "@/components/promotional/ProductCollection";
 
 
 export default function App() {
@@ -19,6 +20,7 @@ export default function App() {
         <Hero />
         <div className="bg-white dark:bg-gray-800">
           <Promotional />
+          <ProductCollection />
           <ReviewSet />
           <Footer />
         </div>

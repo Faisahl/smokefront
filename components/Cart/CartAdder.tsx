@@ -1,5 +1,5 @@
 import React from "react";
-import { ProductObject } from "@/app/types/ProductTypes";
+import { ProductComponent, ProductObject } from "@/app/types/ProductTypes";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 type Props = {
@@ -16,7 +16,7 @@ const CartAdder: React.FC<Props> = ({ item, setter, selected }) => {
     >
       <p
         className={`${
-          item.attributes.name === selected ? "inline" : "hidden"
+          item.attributes.base[0].name === selected ? "inline" : "hidden"
         } mr-2 text-s text-green-55 font-semibold`}
       >
         Item Added!

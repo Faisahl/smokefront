@@ -1,21 +1,23 @@
-"use client";
+"use client"
 
-import { ProductObject } from "@/app/types/ProductTypes";
+import { ProductComponent, ProductObject } from "@/app/types/ProductTypes";
 import React, { useEffect, useState } from "react";
 import ProductList from "./ProductList";
 import Sidebar from "./Sidebar";
 import { sortByAlphaAZ, sortHighLow, sortLowHigh } from "@/utils/sorting";
 
 const ProductContainer = ({ data }: { data: ProductObject[] }) => {
+  const brands = brandList(data);
   const [sortedItems, setSortedItems] = useState<ProductObject[]>(data);
-  const [value, setValue] = useState<string>("nosort");
-  const [brand, setBrand] = useState<string>("");
+  const [value, setValue] = useState<string>("");
+  const [brand, setBrand] = useState<string[]>(brands);
 
   useEffect(() => {
     sortSwitcher(value);
-    if (brand !== "") {
-      filterBrand(brand, data);
-    }
+    // if (brand !== "") {
+    //   filterBrand(brand, data);
+    // }
+    console.log(data)
   }, [value, brand]);
 
   function sortSwitcher(key: string) {
@@ -34,7 +36,7 @@ const ProductContainer = ({ data }: { data: ProductObject[] }) => {
 
   const filterBrand = (key: string, data: ProductObject[]) => {
     setSortedItems(
-      data.filter((i) => i.attributes.brand?.data.attributes.name === key)
+      data.filter((i) => i.attributes.base[0].name === key)
     );
   };
 
@@ -48,7 +50,7 @@ const ProductContainer = ({ data }: { data: ProductObject[] }) => {
     return [...new Set(arr)];
   }
 
-  const brands = brandList(data);
+  
 
   return (
     <div className="container bg-white dark:bg-gray-800 h-screen">
