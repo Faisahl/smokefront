@@ -10,12 +10,12 @@ const Banner: React.FC = () => {
           <strong className="font-semibold">Grand Opening!</strong>
           <svg
             viewBox="0 0 2 2"
-            className="mx-auto md:mx-2 my-1 md:my-0 block md:inline h-0.5 w-0.5 fill-current"
+            className="mx-auto md:mx-2 my-1 md:my-0 hidden md:inline h-0.5 w-0.5 fill-current"
             aria-hidden="true"
           >
             <circle cx="1" cy="1" r="1" />
           </svg>
-          Join us in celebrating with 3 for $45 Escobars!
+          <br className="md:hidden"/>Join us in celebrating with 3 for $45 Escobars!
         </p>
       </div>
       <div className="flex flex-1 justify-end cursor-pointer">
