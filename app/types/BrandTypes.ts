@@ -25,4 +25,7 @@ export type BrandObjType = {
 type BrandObj = {
   name: string,
   waterpipes: ProductResponse
+  cigarillos: ProductResponse
+  delta_8s: ProductResponse
+  edibles: ProductResponse
 }

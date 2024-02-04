@@ -3,7 +3,7 @@
 const Banner: React.FC = () => {
   return (
     <div
-      className={`-z-50 relative isolate flex items-center gap-x-6 overflow-hidden light:bg-gray-50 dark:dark:bg-gray-800 px-6 py-2.5 sm:px-3.5 sm:before:flex-1`}
+      className={`border-b -z-50 relative isolate flex items-center gap-x-6 overflow-hidden light:bg-gray-50 dark:dark:bg-gray-800 px-6 py-2.5 sm:px-3.5 sm:before:flex-1`}
     >
       <div className="flex flex-wrap items-center text-center gap-x-4 gap-y-2">
         <p className="text-sm leading-6 light:text-gray-900 dark:text-white">

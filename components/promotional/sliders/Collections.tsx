@@ -13,6 +13,7 @@ const Collections = ({ data }: { data: BrandObjType[] }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: false,
     dragFree: true,
+    slidesToScroll: 'auto'
   });
 
   const scrollPrev = useCallback(() => {
@@ -24,7 +25,7 @@ const Collections = ({ data }: { data: BrandObjType[] }) => {
 
   return (
     <section>
-      <div className="mx-auto my-12 max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+      <div className="mx-auto my-2 md:my-12 lg:my-4 max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
         <header>
           <h2 className="tracking-wide text-xl pb-1 border-b-4 border-custo-51 font-medium text-gray-900 dark:text-white sm:text-3xl  shadow-sm">
             GRAV Collection
@@ -68,13 +69,13 @@ const Collections = ({ data }: { data: BrandObjType[] }) => {
           <div className="flex justify-between">
             <button
               onClick={scrollPrev}
-              className="embla__prev hidden lg:block relative bg-custo-51 text-white p-3 shadow-sm bottom-72 right-20 rounded-s-full my-2"
+              className="embla__prev hidden lg:block relative bg-custo-51 text-white p-3 shadow-sm bottom-72 right-20 rounded-full my-2"
             >
               <ArrowBackIosNewIcon fontSize="large" />
             </button>
             <button
               onClick={scrollNext}
-              className="embla__next hidden lg:block relative bg-custo-51 text-white p-3 shadow-sm bottom-72 left-20 rounded-e-full my-2"
+              className="embla__next hidden lg:block relative bg-custo-51 text-white p-3 shadow-sm bottom-72 left-20 rounded-full my-2"
             >
               <ArrowForwardIosIcon fontSize="large" />
             </button>

@@ -23,6 +23,7 @@ export type ProductType = {
     sku: string,
     quantity?: number,
     image: ImageResponse,
+    count?: number
     // brand?: BrandResponse
 }
 
