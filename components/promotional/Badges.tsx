@@ -4,7 +4,7 @@ type Props = {};
 
 const Badges = (props: Props) => {
   return (
-    <div className="container my-20 text-gray-900 dark:text-white mx-auto max-w-5xl flex gap-12 flex-wrap items-start justify-center md:justify-between">
+    <div className="container my-10 text-gray-900 dark:text-white mx-auto max-w-5xl flex gap-12 flex-wrap items-start justify-center md:justify-between">
       <div className="grid gap-4 justify-items-center text-center md:flex-1">
         <div className=" rounded-full border-8 border-custo-51 p-4 ">
           <svg

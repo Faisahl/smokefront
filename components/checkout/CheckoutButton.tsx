@@ -37,7 +37,7 @@ const CheckoutButton: React.FC<Props> = ({  data, setter }) => {
       setTimeout(() => {
         // dispatch({ type: 'AUTHORIZE', payload: true });
         setLoading(false);
-        router.push(`/basket/checkout/${data[0].orderId}`);
+        router.push(`/basket/checkout/customer-contact`);
       }, 1000);
     }
 

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback } from "react";
 import { BrandObjType } from "@/app/types/BrandTypes";
 import { ProductObject } from "@/app/types/ProductTypes";
 import useEmblaCarousel from "embla-carousel-react";
@@ -21,20 +21,18 @@ const Collections = ({
   const edibles: ProductObject[] = edibleData[0].attributes.edibles.data;
   const cookieProducts: ProductObject[] = [...deltas, ...edibles];
   // const items: ProductObject[] = data[0].attributes.waterpipes.data;
-  const [emblaRef, emblaApi] = useEmblaCarousel({
+  const [emblaRefi, emblaApiy] = useEmblaCarousel({
     loop: false,
     dragFree: true,
     slidesToScroll: "auto",
   });
 
-  console.log(deltaData);
-
   const scrollPrev = useCallback(() => {
-    if (emblaApi) emblaApi.scrollPrev();
-  }, [emblaApi]);
+    if (emblaApiy) emblaApiy.scrollPrev();
+  }, [emblaApiy]);
   const scrollNext = useCallback(() => {
-    if (emblaApi) emblaApi.scrollNext();
-  }, [emblaApi]);
+    if (emblaApiy) emblaApiy.scrollNext();
+  }, [emblaApiy]);
 
   return (
     <section>
@@ -59,7 +57,7 @@ const Collections = ({
           </h2>
         </header>
         <div className="embla relative mx-auto mt-6">
-          <div className="embla_viewport overflow-hidden" ref={emblaRef}>
+          <div className="embla_viewport overflow-hidden" ref={emblaRefi}>
             <div className="embla_container flex">
               {cookieProducts.map((item) => {
                 const image =
@@ -67,13 +65,14 @@ const Collections = ({
                     .medium;
                 return (
                   <div
-                    className="embla_slider mx-2"
+                    key={item.attributes.base[0].name}
+                    className="embla_slider mx-2 min-w-0 grow-0 shrink-0 basis-1/2 md:basis-1/3 lg:basis-1/4"
                     style={{ minWidth: 0, flex: "0 0 auto" }}
                   >
                     <img
                       src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${image.url}`}
                       alt="Grav piece"
-                      className="mx-auto h-2/3 md:mx-0 transition duration-500"
+                      className="mx-auto md:mx-0 h-72 md:h-80"
                       width={300}
                       // height={'100%'}
                     />

@@ -1,10 +1,11 @@
+import Custom404 from '@/components/errors/404'
 import React from 'react'
 
 type Props = {}
 
 const page: React.FC = ({}) => {
   return (
-    <div>checkout page</div>
+    <Custom404 />
   )
 }
 
