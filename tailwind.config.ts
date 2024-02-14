@@ -33,7 +33,7 @@ module.exports = {
           55: '#04e762'
         },
         custo: {
-          50: '#42C2FF',
+          50: '#65C18C',
           51: '#4D77FF',
           52: '#FBFD8A'
         }
@@ -46,3 +46,4 @@ module.exports = {
 }
 // 7286D3
 export default config;
+// 42C2FF
