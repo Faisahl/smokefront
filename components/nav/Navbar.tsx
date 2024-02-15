@@ -30,7 +30,7 @@ const Navbar = () => {
           </div>
           <ul className="md:flex hidden items-center gap-8">
             <li>
-                <span className="md:hover:text-custo-50 text-xl">
+                <span className="lg:hover:text-custo-50 text-xl">
                   <Link 
                     href='/' 
                     className="py-7 px-3 inline-block"

@@ -11,10 +11,10 @@ import gummybundle from "../../public/gummybundle.png";
 
 const Promotional = () => {
   return (
-    <section className="border-t-4 md:mt-80 lg:mt-4 border-double border-custo-51 my-8 text-gray-900 dark:text-white body-font">
+    <section className="border-t-2 dark:border-gray-700 border-custo-51 md:mt-80 lg:mt-4 my-8 text-gray-900 dark:text-white body-font">
       <div className="container lg:px-10 py-10 mx-auto grid grid-cols-1 md:grid-cols-3">
         
-        <div className="mt-2 mx-2 md:mx-0 md:ml-2 md:w-60 lg:w-96 shadow border-2 border-gray-700 rounded-md p-6">
+        <div className="mt-2 mx-2 md:mx-0 md:ml-2 md:w-60 lg:w-96 shadow border dark:border-gray-700 rounded-md p-6">
           <Image
             src={gummybundle}
             alt="Delta 8 edibles"
@@ -44,7 +44,7 @@ const Promotional = () => {
           </Link>
         </div>
 
-        <div className="mt-2 mx-2 md:mx-0 md:ml-2 md:w-60 lg:w-96 shadow border-2 border-gray-700 rounded-md p-6">
+        <div className="mt-2 mx-2 md:mx-0 md:ml-2 md:w-60 lg:w-96 shadow border dark:border-gray-700 rounded-md p-6">
           <Image
             src={dmbundle}
             alt="cigarillo link"
@@ -75,7 +75,7 @@ const Promotional = () => {
           </Link>
         </div>
 
-        <div className="mt-2 mx-2 md:mx-auto md:mr-2 md:w-60 lg:w-96 shadow border-2 border-gray-700 rounded-md p-6">
+        <div className="mt-2 mx-2 md:mx-auto md:mr-2 md:w-60 lg:w-96 shadow border dark:border-gray-700 rounded-md p-6">
           <Image
             src={dispobundle}
             alt="disposables link"

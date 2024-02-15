@@ -49,8 +49,8 @@ const CartView: React.FC<Props> = ({ data, setter }) => {
       {data.length !== 0 ? (
         <div className="container mx-auto px-4 py-6 text-gray-900 dark:text-white">
           <h1 className="text-2xl font-semibold mb-6">Shopping Cart</h1>
-          <div className="flex flex-col md:flex-row gap-4">
-            <div className="md:w-3/4">
+          <div className="flex flex-col lg:flex-row gap-4">
+            <div className="lg:w-3/4">
               <CartWrap>
                   <CartList 
                     data={data} 
@@ -59,7 +59,7 @@ const CartView: React.FC<Props> = ({ data, setter }) => {
                   />
               </CartWrap>
             </div>
-            <div className="md:w-1/4">
+            <div className="lg:w-1/4">
               <SideCart 
                 data={data}
                 subtotal={subTotal} 
@@ -72,8 +72,8 @@ const CartView: React.FC<Props> = ({ data, setter }) => {
       ) : (
         <div className="container mx-auto px-4 py-6 dark:text-white">
           <h1 className="text-2xl font-semibold mb-4">Shopping Cart</h1>
-          <div className="flex flex-col md:flex-row gap-4">
-            <div className="md:w-3/4">
+          <div className="flex flex-col lg:flex-row gap-4">
+            <div className="lg:w-3/4">
               <CartWrap>
                 <tr>
                   <td
@@ -88,7 +88,7 @@ const CartView: React.FC<Props> = ({ data, setter }) => {
                 </tr>
               </CartWrap>
             </div>
-            <div className="md:w-1/4">
+            <div className="lg:w-1/4">
               <SideCart 
                 subtotal={subTotal} 
                 taxes={taxes} 

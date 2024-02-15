@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import Link from "next/link";
+import ButtonUi from "./ui/ButtonUi";
 
 const Button = () => {
 
@@ -15,13 +16,11 @@ const Button = () => {
         />
       </Link>
 
-      <button className="bg-custo-50 text-xl md:text-base text-white md:mx-2 px-6 py-2 rounded-full shadow">
-        <Link
-          href={'/how-to-pickup'}
-        >
-          Order Pickup
-        </Link> 
-      </button>
+      <ButtonUi 
+        link='/how-to-pickup'
+        styles="bg-custo-50 hidden lg:inline md:mx-2 text-white text-xl md:text-base px-6 py-2 font-medium rounded-full shadow"
+        display='Order Pickup'
+      />
     </>
   );
 };

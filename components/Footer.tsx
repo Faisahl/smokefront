@@ -5,8 +5,8 @@ import React from "react";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-white dark:bg-gray-800 border-t-2 md:flex md:items-center md:justify-between p-4 md:p-6 xl:p-8 mt-6 pb-6">
-      <ul className="flex items-center flex-wrap mb-6 md:mb-0 ">
+    <footer className="bg-white dark:bg-gray-800 border-t-2 md:flex md:items-center md:justify-between px-4 md:p-6 xl:p-8 pb-6">
+      <ul className="flex justify-center md:justify-start mb-6 md:mb-0 ">
         <li>
           <span
             className="text-sm font-normal text-gray-500 dark:text-white mr-4 md:mr-6"
@@ -23,8 +23,17 @@ const Footer: React.FC = () => {
             </a>
           </span>
         </li>
+        <li>
+          <span
+            className="text-sm font-normal hover:underline text-gray-500 dark:text-white mr-4 md:mr-6"
+          >
+            <Link href={'/how-to-pickup'}>
+              Pick Up?
+            </Link>
+          </span>
+        </li>
       </ul>
-      <div className="flex sm:justify-center space-x-6">
+      <div className="flex justify-center md:justify-end space-x-6">
         {/* instgram icon */}
         <a href="#" className="text-gray-500 hover:text-gray-900 dark:text-white dark:hover:text-gray-300">
           <svg

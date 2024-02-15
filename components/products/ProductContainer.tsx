@@ -17,7 +17,7 @@ const ProductContainer = ({ data }: { data: ProductObject[] }) => {
     // if (brand !== "") {
     //   filterBrand(brand, data);
     // }
-    console.log(data)
+    // console.log(data)
   }, [value, brand]);
 
   function sortSwitcher(key: string) {

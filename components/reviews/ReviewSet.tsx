@@ -24,7 +24,7 @@ const ReviewSet: React.FC = () => {
   ];
 
   return (
-    <div className="mt-20 md:my-6">
+    <div className="mt-20 md:mt-6">
       {/* stars svgs */}
       <div className="flex gap-0.5 justify-center mb-6">
         <svg

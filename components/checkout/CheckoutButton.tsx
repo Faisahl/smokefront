@@ -47,7 +47,7 @@ const CheckoutButton: React.FC<Props> = ({  data, setter }) => {
     <div className="flex">
       <button 
         onClick={(e)=>placeOrder(e)} 
-        className="shadow-sm text-center bg-custo-50 text-white py-2 px-4 rounded-lg mt-4 w-full"
+        className="bg-custo-50 text-white hover:opacity-90 shadow-sm font-medium md:text-lg text-center py-2 px-4 rounded-full mt-4 w-full"
       >
         {loading 
         ? 

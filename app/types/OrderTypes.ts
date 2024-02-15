@@ -15,3 +15,7 @@ export type OrderType = {
   orderId: string,
   cart: OrderObjectType[]
 }
+
+export type StrapiOrderType = {
+  
+}

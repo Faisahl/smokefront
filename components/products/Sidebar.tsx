@@ -85,22 +85,25 @@ const Sidebar: React.FC<Props> = ({ setValue, setBrand, brands }) => {
         </select>
 
         <label
-          className="block my-4 text-gray-900 dark:text-white"
+          className="block mt-4 text-gray-900 dark:text-white"
           htmlFor="brandradios"
         >
           Brands:
         </label>
-        <fieldset id="brandradios" className="grid grid-cols-2">
+        <fieldset id="brandradios" className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2">
           {brands.map((brand,index) => (
-            <div key={index}>
+            <div 
+              key={index}
+              className="mt-6 text-center"
+            >
               <input
-                className="mt-2 peer hidden"
+                className="peer hidden"
                 type="checkbox"
                 id={brand}
                 name="radiobrand"
                 value={brand}
                 checked={checked[index]}
-                onClick={() => handleOnChange(index)}
+                onChange={() => handleOnChange(index)}
               />
               <label
                 className="cursor-pointer text-sm text-gray-900 dark:text-white border-2 border-gray-700 hover:border-custo-51 peer-checked:border-custo-51 rounded p-2"

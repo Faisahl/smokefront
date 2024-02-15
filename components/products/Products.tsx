@@ -27,11 +27,11 @@ const Products: React.FC<{ data: ProductObject[] }> = ({ data }) => {
   return (
     <>
       {data.map((p: ProductObject) => {
-        const { name, price, sku } = p.attributes.base[0];
+        const { name, price, sku, id } = p.attributes.base[0];
         const image = p.attributes.base[0].image.data[0].attributes.formats.thumbnail;
         const brand = p.attributes.brand.data.attributes.name;
         return (
-          <div key={sku}>
+          <div key={id}>
             <img
               src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${image.url}`}
               alt="Dutches"

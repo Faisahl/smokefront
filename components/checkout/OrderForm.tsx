@@ -1,15 +1,16 @@
 import { affix } from "@/utils/api";
 import { useRouter } from "next/navigation";
-import { Dispatch, SetStateAction } from "react";
+import React, { Dispatch, SetStateAction, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import ButtonUi from "../ui/ButtonUi";
 
 type Props = {
   setter: Dispatch<SetStateAction<CustomerType | null>>;
   loader: Dispatch<SetStateAction<boolean>>;
-  path: string
+  children: React.ReactNode
 };
 
-const OrderForm: React.FC<Props> = ({ setter, loader, path }) => {
+const OrderForm: React.FC<Props> = ({ setter, loader,children }) => {
   // const { isAuth } = useState(IsAuthContext);
   const router = useRouter();
   const {
@@ -20,11 +21,11 @@ const OrderForm: React.FC<Props> = ({ setter, loader, path }) => {
 
   const onSubmit = async (data: CustomerType) => {
     loader(true);
-    const cust = {
+    const cust: CustomerType = {
       first_name: data.first_name,
       last_name: data.last_name,
       email: data.email,
-      phone: data.mobile,
+      phone: data.phone,
     };
     const options = {
       method: "POST",
@@ -35,18 +36,17 @@ const OrderForm: React.FC<Props> = ({ setter, loader, path }) => {
       `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/customers`,
       options
     );
-
     if (customer) {
       setter(customer);
       loader(false);
-      router.push(`/basket/checkout/${customer.id}`)
+      router.push(`/basket/checkout/confirm-pickup/${customer.id}`)
     }
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate={true}>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:mb-6">
-        <div className="form-control">
+        <div className="">
           <label
             htmlFor="first_name"
             className="text-gray-900 dark:text-white font-medium"
@@ -69,7 +69,7 @@ const OrderForm: React.FC<Props> = ({ setter, loader, path }) => {
           />
           <p className="text-red-500">{errors.first_name?.message}</p>
         </div>
-        <div>
+        <div className="">
           <label
             htmlFor="last_name"
             className="text-gray-900 dark:text-white font-medium"
@@ -91,7 +91,7 @@ const OrderForm: React.FC<Props> = ({ setter, loader, path }) => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:mb-6">
-        <div>
+        <div className="mt-4 md:mt-0">
           <label
             htmlFor="email"
             className="text-gray-900 dark:text-white font-medium"
@@ -119,18 +119,18 @@ const OrderForm: React.FC<Props> = ({ setter, loader, path }) => {
           />
           <p className="text-red-500">{errors.email?.message}</p>
         </div>
-        <div>
+        <div className="">
           <label
-            htmlFor="mobile"
+            htmlFor="phone"
             className="text-gray-900 dark:text-white font-medium"
           >
             Phone No:
           </label>
           <input
             type="text"
-            id="mobile"
+            id="phone"
             placeholder="Phone"
-            {...register("mobile", {
+            {...register("phone", {
               required: {
                 value: true,
                 message: "Phone no. is required",
@@ -144,31 +144,31 @@ const OrderForm: React.FC<Props> = ({ setter, loader, path }) => {
             })}
             className="w-full rounded-lg border py-2 px-3 dark:bg-gray-700 dark:text-white dark:border-none"
           />
-          <p className="text-red-500">{errors.mobile?.message}</p>
+          <p className="text-red-500">{errors.phone?.message}</p>
         </div>
       </div>
-
-      <label
-        htmlFor="pickuptime"
-        className="text-gray-700 dark:text-white font-medium"
-      >
-        Pickup time:
-      </label>
-      <input
-        readOnly={true}
-        type="text"
-        placeholder="~15 minutes"
-        className="block text-gray-700 border dark:bg-gray-700 dark:text-white mb-1 p-2 dark:border-none rounded-lg"
-        id="pickuptime"
-      />
+      <div className="mt-4">
+        <label
+          htmlFor="pickuptime"
+          className="text-gray-700 dark:text-white font-medium"
+        >
+          Pickup time:
+        </label>
+        <input
+          readOnly={true}
+          type="text"
+          placeholder="~10 minutes"
+          className="block text-gray-700 border dark:bg-gray-700 dark:text-white mb-1 p-2 dark:border-none rounded-lg"
+          id="pickuptime"
+        />
+      </div>
 
       <div className="flex justify-end">
-        <button
-          type="submit"
-          className="p-3 text-white font-medium bg-custo-51 mt-6 rounded-lg"
-        >
-          Confirm Order
-        </button>
+        {children}
+        {/* <ButtonUi 
+          styles="bg-custo-50 hover:opacity-90 md:mx-2 text-white text-xl md:text-base px-6 py-2 font-semibold rounded-full shadow"
+          display="Confirm Order"
+        /> */}
       </div>
     </form>
   );

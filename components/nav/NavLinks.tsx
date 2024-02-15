@@ -31,7 +31,7 @@ const NavLinks = ({ setMenu, isOpen }: Props) => {
     <>
       {links.map((link) => (
         <div key={link.name}>
-          <div className="px-3 text-left group md:hover:text-custo-50">
+          <div className="px-3 text-left group lg:hover:text-custo-50">
             <h1
               className="py-5 flex justify-between items-center md:pr-0 pr-5 group cursor-default text-lg font-medium"
               onClick={() => {
