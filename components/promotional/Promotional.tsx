@@ -2,18 +2,17 @@
 
 import React from "react";
 import Image from "next/image";
-import storefront from "../../public/storefront-min.png";
+import storefront from "../../public/images/storefront-min.png";
 import Link from "next/link";
-import swisherbundle from "../../public/swisherbundle.png";
-import dmbundle from "../../public/dmbundle.png";
-import dispobundle from "../../public/dispo-bundle.png";
-import gummybundle from "../../public/gummybundle.png";
+import swisherbundle from "../../public/images/swisherbundle.png";
+import dmbundle from "../../public/images/dmbundle.png";
+import dispobundle from "../../public/images/dispo-bundle.png";
+import gummybundle from "../../public/images/gummybundle.png";
 
 const Promotional = () => {
   return (
     <section className="border-t-2 dark:border-gray-700 border-custo-51 md:mt-80 lg:mt-4 my-8 text-gray-900 dark:text-white body-font">
       <div className="container lg:px-10 py-10 mx-auto grid grid-cols-1 md:grid-cols-3">
-        
         <div className="mt-2 mx-2 md:mx-0 md:ml-2 md:w-60 lg:w-96 shadow border dark:border-gray-700 rounded-md p-6">
           <Image
             src={gummybundle}
@@ -57,7 +56,7 @@ const Promotional = () => {
             crafted for a rich, flavorful experience.
           </p>
           <Link
-            href={'/api/tobacco/cigarillos'}
+            href={"/api/tobacco/cigarillos"}
             className="text-custo-51 underline items-center inline"
           >
             Learn More

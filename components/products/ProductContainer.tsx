@@ -12,6 +12,14 @@ const ProductContainer = ({ data }: { data: ProductObject[] }) => {
   const [value, setValue] = useState<string>("");
   const [brand, setBrand] = useState<string[]>(brands);
 
+  const handleValue = (data:string) => {
+    setValue(data)
+  }
+  const handleBrand = (data:string[]) => {
+    setBrand(data)
+  }
+
+
   useEffect(() => {
     sortSwitcher(value);
     // if (brand !== "") {
@@ -19,7 +27,7 @@ const ProductContainer = ({ data }: { data: ProductObject[] }) => {
     // }
     // console.log(data)
   }, [value, brand]);
-
+  
   function sortSwitcher(key: string) {
     switch (key) {
       case "lowtohigh":
@@ -56,7 +64,7 @@ const ProductContainer = ({ data }: { data: ProductObject[] }) => {
     <div className="container bg-white dark:bg-gray-800 h-screen">
       <div className="flex flex-col md:flex-row">
         <div className="md:w-1/4 pt-20 m-2">
-          <Sidebar setValue={setValue} setBrand={setBrand} brands={brands} />
+          <Sidebar setValue={handleValue} setBrand={handleBrand} brands={brands} />
         </div>
         <div className="md:w-3/4">
           <ProductList data={sortedItems} />

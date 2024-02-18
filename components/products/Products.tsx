@@ -31,11 +31,11 @@ const Products: React.FC<{ data: ProductObject[] }> = ({ data }) => {
         const image = p.attributes.base[0].image.data[0].attributes.formats.thumbnail;
         const brand = p.attributes.brand.data.attributes.name;
         return (
-          <div key={id}>
+          <div className="border-b-2 border-r-2 dark:border-gray-700 shadow-sm dark:shadow-md rounded-sm" key={id}>
             <img
               src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${image.url}`}
               alt="Dutches"
-              className="mx-auto object-cover object-center lg:hover:opacity-75"
+              className="mx-auto pt-2 object-cover object-center lg:hover:opacity-75"
               width={`${image.width}`}
               height={`${image.height}`}
             />

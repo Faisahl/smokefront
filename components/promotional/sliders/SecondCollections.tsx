@@ -7,8 +7,8 @@ import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-import cookieslogo from '../../../public/logocookies.png'
-import wcookieslogo from '../../../public/logocookies-w.png'
+import cookieslogo from '../../../public/images/logocookies.png'
+import wcookieslogo from '../../../public/images/logocookies-w.png'
 
 const Collections = ({
   deltaData,

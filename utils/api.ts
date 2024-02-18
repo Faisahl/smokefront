@@ -1,5 +1,3 @@
-import { ProductResponse } from "@/app/types/ProductTypes";
-
 export async function retrieve(url: string, options: object = {}) {
   console.log(url);
   let response;

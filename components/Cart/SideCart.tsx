@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
-import CheckoutButton from "../checkout/CheckoutButton";
+import CheckoutButton from "./CheckoutButton";
 import { handleAlert } from "@/utils/utils";
 import { UUID } from "crypto";
 import { CartItemType } from "@/app/types/CartItemType";

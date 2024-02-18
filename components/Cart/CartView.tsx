@@ -14,14 +14,14 @@ import CartList from "./CartList";
 
 type Props = {
   data: CartItemType[],
-  setter: Dispatch<SetStateAction<CartItemType[]>>
+  setter: (data:CartItemType[])=>void
 };
 
 const CartView: React.FC<Props> = ({ data, setter }) => {
   const [subTotal, setSubtotal] = useState<number>(calculateSubTotal(data));
   const [taxes, setTaxes] = useState<number>(calculateTaxes(subTotal));
   const [total, setTotal] = useState<number>(0);
-
+  
   // maybe extract this whole useeffect to its own small hook
   // useCartMonitor or something
   useEffect(() => {
@@ -34,10 +34,6 @@ const CartView: React.FC<Props> = ({ data, setter }) => {
       setTaxes(calculateTaxes(subTotal));
       setTotal(calculateTotal(subTotal, taxes));
   }
-
-  const sourcer = (i: string) => {
-    return `${process.env.NEXT_STRAPI_PUBLIC_URL}${i}`;
-  };
 
   const remove = (name:string):void => {
     const newCart:CartItemType[] = data.filter(i => i.name !== name);

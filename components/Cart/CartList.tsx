@@ -8,7 +8,7 @@ import { updateQuantity } from '@/utils/utils';
 type Props = {
   data: CartItemType[],
   remover: (arg: string)=>void,
-  setter: Dispatch<SetStateAction<CartItemType[]>>
+  setter: (data:CartItemType[])=>void
 }
 
 const CartList: React.FC<Props> = ({ data, remover, setter }) => {
@@ -18,14 +18,14 @@ const CartList: React.FC<Props> = ({ data, remover, setter }) => {
         <tr key={item.name}>
           <td className="py-4">
             <div className="flex items-center">
-              {/* <Image
+              <img
                 className="h-16 w-16 mr-4"
-                src={sourcer(item.image)}
+                src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${item.image}`}
                 width={50}
                 height={50}
                 style={{ objectFit: "contain" }}
                 alt="Product image"
-              /> */}
+              />
               <span className="font-semibold">{item.name}</span>
             </div>
           </td>

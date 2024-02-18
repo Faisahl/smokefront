@@ -6,7 +6,7 @@ import NavLinks from "./NavLinks";
 import Button from "../Button";
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
-import malaflor from '../../public/logo-malaflor.png'
+import malaflor from '../../public/images/logo-malaflor.png'
 import Image from "next/image";
 
 const Navbar = () => {

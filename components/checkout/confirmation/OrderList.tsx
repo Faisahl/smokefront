@@ -1,9 +1,9 @@
-'use client'
+"use client";
 import { OrderType } from "@/app/types/OrderTypes";
 import React from "react";
 
 type Props = {
-  items: OrderType[]
+  items: OrderType[];
 };
 
 const OrderList: React.FC<Props> = ({ items }) => {
@@ -13,17 +13,17 @@ const OrderList: React.FC<Props> = ({ items }) => {
         <p className="">Product Name</p>
         <p className="justify-end">qty.</p>
       </div>
-      <hr className="mb-4" />
+      <hr className="mb-4 border-t-2" />
       {items[0].cart.map((ci) => {
         const { brand, name, quantity } = ci;
         return (
-          <div 
+          <div
             key={ci.itemId}
             className="flex justify-between w-full text-md md:text-lg text-gray-900 dark:text-white mt-3"
           >
             <p key={ci.itemId} className="">
               <span className="md:pl-2">
-                {name} | <span className="text-sm">{brand}</span>
+                {name} <span className="text-sm">| {brand}</span>
               </span>{" "}
             </p>
             <p className="justify-end mr-2">{quantity}</p>

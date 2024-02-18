@@ -1,4 +1,4 @@
-import { ProductComponent, ProductObject } from "@/app/types/ProductTypes";
+import { ProductObject } from "@/app/types/ProductTypes";
 
 export function sortLowHigh(unsortedItems: ProductObject[]): ProductObject[] {
   const sortedItems = [...unsortedItems].sort((a, b) => {

@@ -6,18 +6,24 @@ import React, { useEffect, useState } from "react";
 import { CartItemType } from "../types/CartItemType";
 
 const page: React.FC = ({}) => {
-  let [checkoutItems, setCheckoutItems] = useState<CartItemType[]>(
+  const [checkoutItems, setCheckoutItems] = useState<CartItemType[]>(
     () => getSS("cart") || []
   );
+
+  const handleCheckoutItems = (data:CartItemType[]) => {
+    setCheckoutItems(data)
+  }
 
   useEffect(() => {}, [checkoutItems]);
 
   return (
     <section className="dark:bg-gray-800 h-screen">
-      <CartView 
-        data={checkoutItems} 
-        setter={setCheckoutItems} 
-      />
+      {/* <AuthProvider> */}
+        <CartView 
+          data={checkoutItems} 
+          setter={handleCheckoutItems} 
+        />
+      {/* </AuthProvider> */}
     </section>
     
   )

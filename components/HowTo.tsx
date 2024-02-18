@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import arrow from "@/public/how_to_arrow.png";
+import arrow from "@/public/images/how_to_arrow.png";
 import Link from "next/link";
 
 type Props = {};
@@ -36,9 +36,8 @@ const HowTo = (props: Props) => {
           Step 2
         </p>
         <p className="font-regular text-xl my-4 p-4">
-          Proceed to the checkout page where you will be prompted to provide
-          contact information such as your name, phone number, and email
-          address. This information is used <span className="font-bold">only to notify you when pickup is ready.</span> 
+          Complete the checkout process and we'll notify you once your order is
+          ready for pickup.
         </p>
       </div>
 

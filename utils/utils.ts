@@ -1,6 +1,6 @@
 import { CartItemType } from "@/app/types/CartItemType";
-import { ProductComponent, ProductObject } from "@/app/types/ProductTypes";
-import { Dispatch, SetStateAction } from "react";
+import { ProductObject } from "@/app/types/ProductTypes";
+
 
 export const addCart = (
   cart: CartItemType[],
@@ -26,7 +26,7 @@ export const addCart = (
   }
 };
 
-export const updateQuantity = (calc:string , item:CartItemType, data: CartItemType[] ,setter: Dispatch<SetStateAction<CartItemType[]>>) => {
+export const updateQuantity = (calc:string , item:CartItemType, data: CartItemType[] ,setter: (data:CartItemType[])=>void) => {
   const newArr = [...data];
   for(let i = 0; i < newArr.length; i++){
     if(newArr[i].name === item.name && calc === 'plus'){

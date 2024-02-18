@@ -1,21 +1,17 @@
-'use client'
-import React, { useLayoutEffect } from 'react'
-import ConfirmOrder from '@/components/checkout/ConfirmOrder'
-import { isAuthenticated } from '@/utils/Auth';
-import { redirect } from 'next/navigation';
+"use client";
 
-type Props = {}
+import React, { useLayoutEffect } from "react";
+import ConfirmCustomer from "@/components/checkout/customer/ConfirmCustomer";
 
-const page = (props: Props) => {
-  useLayoutEffect(()=>{
-    const isAuth = isAuthenticated;
-    if(!isAuth){
-      redirect('/');
-    }
-  },[]);
+type Props = {};
+
+const page = ({}) => {
+
   return (
-    <ConfirmOrder />
-  )
-}
+    <>
+      <ConfirmCustomer  />
+    </>
+  );
+};
 
-export default page
+export default page;

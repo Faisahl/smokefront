@@ -2,8 +2,8 @@
 import React, { Dispatch, MouseEventHandler, SetStateAction, useEffect, useState } from "react";
 
 type Props = {
-  setValue: Dispatch<SetStateAction<string>>,
-  setBrand: Dispatch<SetStateAction<string[]>>,
+  setValue: (data:string)=>void,
+  setBrand: (data:string[])=>void,
   brands: string[]
 };
 
