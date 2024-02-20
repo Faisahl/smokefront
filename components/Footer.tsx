@@ -5,7 +5,6 @@ import Link from "next/link";
 import React from "react";
 
 const Footer: React.FC = () => {
-  // console.log(getCookie('isAuth'))
   return (
     <footer className="bg-white dark:bg-gray-800 border-t-2 dark:border-gray-700 md:flex md:items-center md:justify-between px-4 md:p-6 xl:p-8 pb-6">
       <ul className="flex justify-center md:justify-start mb-6 md:mb-0 ">

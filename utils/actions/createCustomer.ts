@@ -1,6 +1,6 @@
 "use server";
 
-import { affix } from "./api";
+import { affix } from "../api";
 
 export const createCustomer = async (
   data: CustomerType

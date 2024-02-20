@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/nav/Navbar";
 import Footer from "@/components/Footer";
-import AuthProvider from "../components/ctx/Auth";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,10 +20,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Navbar />
-        {children}
+          {children}
         <Footer />
 
-        {/* <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v1.9.5/dist/alpine.js"></script> */}
+        
         <script src="https://unpkg.com/embla-carousel-autoplay/embla-carousel-autoplay.umd.js"></script>
         <script
           type="module"

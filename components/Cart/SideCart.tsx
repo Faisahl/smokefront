@@ -1,14 +1,10 @@
 "use client";
 
-import Link from "next/link";
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import CheckoutButton from "./CheckoutButton";
-import { handleAlert } from "@/utils/utils";
-import { UUID } from "crypto";
 import { CartItemType } from "@/app/types/CartItemType";
-import { getSS, removeSS, setSS } from "@/utils/storage";
+import { removeSS } from "@/utils/storage";
 import { OrderObjectType, OrderType } from "@/app/types/OrderTypes";
-import { create } from "domain";
 
 type Props = {
   subtotal: number;
@@ -17,9 +13,13 @@ type Props = {
   data?: CartItemType[];
 };
 
-const SideCart: React.FC<Props> = ({ data, subtotal, taxes, total }) => {
+const SideCart: React.FC<{ data?: CartItemType[], subtotal: number, taxes: number, total: number }> = ({data,subtotal,taxes,total}) => {
   const [alert, setAlert] = useState<boolean>(false);
   const [order, setOrder] = useState<OrderType[]>([]);
+
+  const handleAlert = (doIt: boolean) => {
+    setAlert(doIt)
+  }
 
   useEffect(() => {
     if (!data) {
@@ -86,7 +86,7 @@ const SideCart: React.FC<Props> = ({ data, subtotal, taxes, total }) => {
         Please add items to proceed
       </p>
 
-      <CheckoutButton data={order} setter={setAlert} />
+      <CheckoutButton data={order} setter={handleAlert} />
     </div>
   );
 };

@@ -1,33 +1,37 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
-import { ProductComponent, ProductObject } from "@/app/types/ProductTypes";
+import React from "react";
 import { addCart, handleAlert } from "@/utils/utils";
 import { getSS, setSS } from "@/utils/storage";
 import { CartItemType } from "@/app/types/CartItemType";
 import CartAdder from "../Cart/CartAdder";
+import { ProductPiece } from "@/app/types/GqlProductTypes";
 
-const Products: React.FC<{ data: ProductObject[] }> = ({ data }) => {
-  const [cart, setCart] = useState<CartItemType[]>(() => getSS("cart") || []);
-  const [inCart, setInCart] = useState<boolean>(false);
-  const [selected, setSelected] = useState("");
+const Products: React.FC<{ data: ProductPiece[] }> = ({ data }) => {
+  const [cart, setCart] = React.useState<CartItemType[]>(() => getSS("cart") || []);
+  const [inCart, setInCart] = React.useState<boolean>(false);
+  const [selected, setSelected] = React.useState("");
 
-  useEffect(() => {
+  const handleCart = (items: CartItemType[]) => {
+    setCart(items)
+  }
+
+  React.useEffect(() => {
     setSS("cart", cart);
   }, [cart]);
 
-  const add = (meti: ProductObject) => {
+  const add = (meti: ProductPiece) => {
     setSelected(meti.attributes.base[0].name);
     if (cart) {
-      addCart(cart, setCart, meti);
+      addCart(cart, handleCart, meti);
       handleAlert(setInCart, setSelected);
     }
   };
 
   return (
     <>
-      {data.map((p: ProductObject) => {
-        const { name, price, sku, id } = p.attributes.base[0];
+      {data.map((p: ProductPiece) => {
+        const { name, price, id } = p.attributes.base[0];
         const image = p.attributes.base[0].image.data[0].attributes.formats.thumbnail;
         const brand = p.attributes.brand.data.attributes.name;
         return (

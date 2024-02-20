@@ -1,11 +1,11 @@
 import { CartItemType } from "@/app/types/CartItemType";
-import { ProductObject } from "@/app/types/ProductTypes";
+import { ProductPiece } from "@/app/types/GqlProductTypes";
 
 
 export const addCart = (
   cart: CartItemType[],
-  setCart: React.Dispatch<React.SetStateAction<CartItemType[]>>,
-  meti: ProductObject
+  setCart: (items:CartItemType[])=>void,
+  meti: ProductPiece
 ) => {
   let obj: CartItemType;
   const existing = cart.find((i: CartItemType) => i.name === meti.attributes.base[0].name);
@@ -67,7 +67,7 @@ export const calculateTotal = (subtotal: number, tax: number) => {
 };
 
 export const handleAlert = (
-  setBool: React.Dispatch<React.SetStateAction<boolean>>,
+  setBool: (data:boolean)=>void,
   setString?: React.Dispatch<React.SetStateAction<string>>
 ) => {
   setBool(true);

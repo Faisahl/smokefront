@@ -11,8 +11,8 @@ const HowTo = (props: Props) => {
   return (
     <div className="max-w-screen-sm lg:max-w-screen-md text-gray-900 bg-white py-10 mx-auto px-4 sm:px-6 lg:px-8">
       <div className="text-center">
-        <p className="font-semibold text-lg">STEPS</p>
-        <p className="mt-2 font-bold text-3xl">
+        <p className="font-semibold tracking-tight text-lg">STEPS</p>
+        <p className="mt-2 font-bold tracking-tight text-3xl">
           How it <span className="text-custo-50">Works?</span>
         </p>
       </div>

@@ -1,14 +1,9 @@
 import React from "react";
 import { ProductComponent, ProductObject } from "@/app/types/ProductTypes";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import { ProductPiece } from "@/app/types/GqlProductTypes";
 
-type Props = {
-  item: ProductObject;
-  setter: (arg: ProductObject) => void;
-  selected: string;
-};
-
-const CartAdder: React.FC<Props> = ({ item, setter, selected }) => {
+const CartAdder: React.FC<{ item: ProductPiece, setter: (arg: ProductPiece) => void, selected: string }> = ({ item, setter, selected }) => {
   return (
     <div
       className="cursor-pointer lg:hover:text-custo-51"

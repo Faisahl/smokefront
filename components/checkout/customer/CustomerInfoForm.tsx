@@ -1,7 +1,7 @@
 "use client"
 
 import { Field, Input } from "@/components/forms/Forms";
-import { createCustomer } from "@/utils/createCustomer";
+import { createCustomer } from "@/utils/actions/createCustomer";
 import { useRouter } from "next/navigation";
 import React, { Dispatch, SetStateAction, useEffect } from "react";
 import { useForm } from "react-hook-form";
