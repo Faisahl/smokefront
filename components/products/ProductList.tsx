@@ -21,9 +21,12 @@ const ProductList: React.FC<{ data: ProductPiece[], loading: boolean, sr:string 
           <Products data={data} />
         </section>
       ) : (
-        <section className="pt-24 w-fit mx-auto justify-center">
-          <p className="text-gray-900 dark:text-white font-medium pt-32">
-            <Spinner height={80} width={80} />
+        <section className="w-full pt-24 mx-auto justify-center">
+          <p className="dark:hidden font-medium pt-36">
+            <Spinner height={80} width={80} fill="#4D77FF" />
+          </p>
+          <p className="hidden dark:visible font-medium pt-36">
+            <Spinner height={80} width={80} fill="#fff" />
           </p>
         </section>
       )}

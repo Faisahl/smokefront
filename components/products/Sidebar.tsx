@@ -28,7 +28,7 @@ const Sidebar: React.FC<Props> = ({ setSort }) => {
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 dark:border dark:border-gray-700 rounded-lg shadow-md dark:shadow-lg p-6 ">
+    <div className="bg-white dark:bg-gray-800 dark:border dark:border-gray-700 rounded-lg shadow-md dark:shadow-lg p-6 mx-2 lg:mt-24 lg:ml-4">
       <div className="h-fit">
         <div className="flex items-center justify-between">
           <p className="text-gray-900 dark:text-white text-2xl mb-1">Filters</p>
