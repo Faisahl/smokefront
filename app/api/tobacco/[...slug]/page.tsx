@@ -12,10 +12,10 @@ const page: React.FC<{}> = ({}) => {
   const { 
     loading, 
     products, 
-    handleProducts,
+    clearProducts,
     handleSort,
     getBrands, 
-    handleFilter,
+    clearFilter,
     onFilterSelection 
   } = useCollections(path);
   const brands = [...getBrands(products)];
@@ -29,8 +29,8 @@ const page: React.FC<{}> = ({}) => {
               setSort={handleSort} 
               brands={brands} 
               setFilterSelection={onFilterSelection} 
-              clearFilter={handleFilter}
-              clearProducts={handleProducts}
+              clearFilter={clearFilter}
+              clearProducts={clearProducts}
             />
           </div>
           <div className="lg:w-3/4 ">

@@ -18,7 +18,7 @@ type Props = {
     data3: string
   ) => void;
   brands: string[];
-  clearFilter: (data: Filter[] | []) => void;
+  clearFilter: ()=>void;
   clearProducts: (data: ProductObject[] | []) => void;
 };
 
@@ -37,7 +37,7 @@ const Sidebar: React.FC<Props> = ({
 
   const handleClear = () => {
     setSort("");
-    clearFilter([]);
+    clearFilter();
     clearProducts([]);
   };
 

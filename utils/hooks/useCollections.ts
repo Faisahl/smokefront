@@ -1,10 +1,13 @@
-import {
-  ProductPiece,
-} from "@/app/types/GqlProductTypes";
+import { ProductPiece } from "@/app/types/GqlProductTypes";
 import React from "react";
-import { Component, Filter, FilterType, ProductObject, ProductResponse } from "@/app/types/ProductTypes";
+import {
+  Component,
+  Filter,
+  FilterType,
+  ProductObject,
+  ProductResponse,
+} from "@/app/types/ProductTypes";
 import { retrieve } from "../actions/retrieve";
-
 
 const useCollections = (path: string) => {
   const BASE_QUERY = `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/${path}?populate[base][populate]=image&populate=brand`;
@@ -12,27 +15,25 @@ const useCollections = (path: string) => {
   const [products, setProducts] = React.useState<ProductObject[]>([]);
   const [loading, setLoading] = React.useState<boolean>(true);
   const [filters, setFilters] = React.useState<Filter[]>([]);
+  const userUnfiltered = (filters.length === 0 || sort === "")
 
-  const handleProducts = (data: ProductObject[] | []) => {
+  const clearProducts = (data: ProductObject[] | []) => {
     setProducts(data);
-  }
+  };
 
-  const handleFilter = (arr: Filter[] | []) => {
-    if(!loading){
-      setLoading(true);
-    }
-    setFilters(arr);
-  }
+  const clearFilter = () => {
+    setFilters([]);
+  };
 
   const handleSort = (sort: string) => {
-    if(!loading){
+    if (!loading) {
       setLoading(true);
     }
     setSort(sort);
   };
 
   React.useEffect(() => {
-    if (products.length === 0) {
+    if (products.length === 0 || userUnfiltered) {
       async function getInitialData() {
         const initialData: ProductResponse = await retrieve(BASE_QUERY);
         setProducts(initialData.data);
@@ -47,64 +48,67 @@ const useCollections = (path: string) => {
         setProducts(filtered.data);
         setLoading(false);
       }
-      getFilteredData()
+      getFilteredData();
     }
-
   }, [sort, filters]);
 
-
-  const onFilterSelection = (component: Component, type: FilterType, filt: string, val: string) => {
+  const onFilterSelection = (
+    component: Component,
+    type: FilterType,
+    filt: string,
+    val: string
+  ) => {
     setLoading(true);
-    const existing = filters.some(i => i.value === val);
-    
-    if(existing){
-      const newFilters = filters.filter(i => i.value !== val);
-      setFilters(newFilters)
+    const existing = filters.some((i) => i.value === val);
+
+    if (existing) {
+      const newFilters = filters.filter((i) => i.value !== val);
+      setFilters(newFilters);
     } else {
-      const obj:Filter = {
+      const obj: Filter = {
         component,
         type,
         filter: filt,
-        value: val
-      }
-      setFilters(prev => [...prev, obj]);
+        value: val,
+      };
+      setFilters((prev) => [...prev, obj]);
     }
   };
 
-  const getMutatedQuery = (data:Filter[]) => {
+  const getMutatedQuery = (data: Filter[]) => {
     let filterString: string = "";
     let query: string = "";
 
-    data.forEach(filter => {
-      const newFilt:string = `filters[${filter.component}][${filter.type}][${filter.filter}]=${filter.value}&`;
-      filterString+=newFilt;
-    })
+    data.forEach((filter) => {
+      const newFilt: string = `filters[${filter.component}][${filter.type}][${filter.filter}]=${filter.value}&`;
+      filterString += newFilt;
+    });
 
-    if(sort !== ""){
+    if (sort !== "") {
       query = `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/${path}?sort=${sort}&${filterString}populate[base][populate]=image&populate=brand`;
     } else {
       query = `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/${path}?${filterString}populate[base][populate]=image&populate=brand`;
     }
 
     return query;
-  }
+  };
 
-  const getBrands = (products:ProductPiece[]) => {
+  const getBrands = (products: ProductPiece[]) => {
     let arr: string[] = [];
     for (let i of products) {
       arr.push(i.attributes.brand.data.attributes.name);
     }
     return new Set(arr);
-  }
+  };
 
   return {
     loading,
     products,
-    handleProducts,
+    clearProducts,
     handleSort,
     getBrands,
+    clearFilter,
     onFilterSelection,
-    handleFilter
   };
 };
 
