@@ -12,7 +12,7 @@ export default function App() {
   setCookie("isAuth", String(false));
   return (
     <section className=" bg-cover md:bg-top bg-center">
-      <Banner />
+      
       <div className="bg-white dark:bg-gray-800">
         <Hero />
         <Promotional />

@@ -91,7 +91,7 @@ const useCollections = (path: string) => {
     return query;
   };
 
-  const getBrands = (products: ProductPiece[]) => {
+  const getBrands = (products: ProductObject[]) => {
     let arr: string[] = [];
     for (let i of products) {
       arr.push(i.attributes.brand.data.attributes.name);

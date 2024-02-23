@@ -1,9 +1,9 @@
 'use client'
 
-import React, { Dispatch, SetStateAction } from 'react'
+import React from 'react'
 import { CartItemType } from '@/app/types/CartItemType'
 import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
-import { updateQuantity } from '@/utils/utils';
+import useShoppingCart from '@/utils/hooks/useShoppingCart';
 
 type Props = {
   data: CartItemType[],
@@ -12,6 +12,7 @@ type Props = {
 }
 
 const CartList: React.FC<Props> = ({ data, remover, setter }) => {
+  const { updateExistingCartItemQuantity } = useShoppingCart()
   return (
     <>
       {data.map((item) => (
@@ -33,14 +34,14 @@ const CartList: React.FC<Props> = ({ data, remover, setter }) => {
           <td className="py-4">
             <div className="flex items-center">
               <button
-                onClick={() => updateQuantity('minus',item,data,setter)}
+                onClick={() => updateExistingCartItemQuantity('minus',item,data,setter)}
                 className="border rounded-md py-2 px-4 mr-2"
               >
                 -
               </button>
               <span className="text-center w-8">{item.quantity}</span>
               <button
-                onClick={() => updateQuantity('plus',item,data,setter)}
+                onClick={() => updateExistingCartItemQuantity('plus',item,data,setter)}
                 className="border rounded-md py-2 px-4 ml-2"
               >
                 +

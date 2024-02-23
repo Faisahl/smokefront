@@ -1,9 +1,8 @@
 "use client";
 
 import Products from "./Products";
-import { ProductPiece } from "@/app/types/GqlProductTypes";
 import Spinner from "../ui/Spinner";
-import { ProductComponent, ProductObject } from "@/app/types/ProductTypes";
+import { ProductObject } from "@/app/types/ProductTypes";
 
 const ProductList: React.FC<{ data: ProductObject[], loading: boolean, sr:string }> = ({
   data,

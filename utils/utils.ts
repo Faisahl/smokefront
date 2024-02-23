@@ -1,42 +1,40 @@
-import { CartItemType } from "@/app/types/CartItemType";
-import { ProductObject } from "@/app/types/ProductTypes";
 
-export const addCart = (
-  cart: CartItemType[],
-  setCart: (items:CartItemType[])=>void,
-  meti: ProductObject
-) => {
-  let obj: CartItemType;
-  const existing = cart.find((i: CartItemType) => i.name === meti.attributes.base[0].name);
-  if (!existing) {
-    obj = {
-      id: meti.id,
-      name: meti.attributes.base[0].name,
-      brand: meti.attributes.brand.data.attributes.name ?? "Mala Flor",
-      price: meti.attributes.base[0].price,
-      // sku: meti.attributes.sku,
-      quantity: 1,
-      image: meti.attributes.base[0].image.data[0].attributes.formats.thumbnail.url,
-    };
-    setCart([...cart, obj]);
-  } 
-  else {
-      updateQuantity('plus',existing, cart, setCart);
-  }
-};
+// export const addCart = (
+//   cart: CartItemType[],
+//   setCart: (items:CartItemType[])=>void,
+//   meti: ProductObject
+// ) => {
+//   let obj: CartItemType;
+//   const existing = cart.find((i: CartItemType) => i.name === meti.attributes.base[0].name);
+//   if (!existing) {
+//     obj = {
+//       id: meti.id,
+//       name: meti.attributes.base[0].name,
+//       brand: meti.attributes.brand.data.attributes.name ?? "Mala Flor",
+//       price: meti.attributes.base[0].price,
+//       // sku: meti.attributes.sku,
+//       quantity: 1,
+//       image: meti.attributes.base[0].image.data[0].attributes.formats.thumbnail.url,
+//     };
+//     setCart([...cart, obj]);
+//   } 
+//   else {
+//       updateQuantity('plus',existing, cart, setCart);
+//   }
+// };
 
-export const updateQuantity = (calc:string , item:CartItemType, data: CartItemType[] ,setter: (data:CartItemType[])=>void) => {
-  const newArr = [...data];
-  for(let i = 0; i < newArr.length; i++){
-    if(newArr[i].name === item.name && calc === 'plus'){
-      newArr[i].quantity++;
-    }
-    if(newArr[i].name === item.name && calc === 'minus' && newArr[i].quantity > 1){
-      --newArr[i].quantity;
-    }
-  }
-  setter(newArr);
-};
+// export const updateQuantity = (calc:string , item:CartItemType, data: CartItemType[] ,setter: (data:CartItemType[])=>void) => {
+//   const newArr = [...data];
+//   for(let i = 0; i < newArr.length; i++){
+//     if(newArr[i].name === item.name && calc === 'plus'){
+//       ++newArr[i].quantity;
+//     }
+//     if(newArr[i].name === item.name && calc === 'minus' && newArr[i].quantity > 1){
+//       --newArr[i].quantity;
+//     }
+//   }
+//   setter(newArr);
+// };
 
 export const calculateTaxes = (subtotal: number): number => {
   if (subtotal !== 0) {

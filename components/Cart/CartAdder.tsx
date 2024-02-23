@@ -2,11 +2,11 @@ import React from "react";
 import { ProductObject } from "@/app/types/ProductTypes";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
-const CartAdder: React.FC<{ item: ProductObject, setter: (arg: ProductObject) => void, selected: string }> = ({ item, setter, selected }) => {
+const CartAdder: React.FC<{ item: ProductObject, cartSet: (arg: ProductObject) => void, selected: string }> = ({ item, cartSet, selected }) => {
   return (
     <div
       className="cursor-pointer lg:hover:text-custo-51"
-      onClick={() => setter(item)}
+      onClick={() => cartSet(item)}
     >
       <p
         className={`${
