@@ -12,11 +12,10 @@ const page: React.FC<{}> = ({}) => {
   const { 
     loading, 
     products, 
-    clearProducts,
     handleSort,
     getBrands, 
-    clearFilter,
-    onFilterSelection 
+    onFilterSelection,
+    handleClear 
   } = useCollections(path);
   const brands = [...getBrands(products)];
 
@@ -24,13 +23,12 @@ const page: React.FC<{}> = ({}) => {
     <section className="bg-white dark:bg-gray-800 h-screen">
       <div className="container bg-white dark:bg-gray-800 ">
         <div className="w-full flex flex-col lg:flex-row">
-          <div className="lg:w-1/4">
+          <div className="lg:w-1/4 ">
             <Sidebar 
               setSort={handleSort} 
               brands={brands} 
               setFilterSelection={onFilterSelection} 
-              clearFilter={clearFilter}
-              clearProducts={clearProducts}
+              handleClear={handleClear}
             />
           </div>
           <div className="lg:w-3/4 ">

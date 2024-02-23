@@ -5,7 +5,7 @@ export const links = [
       sublinks: [
         {
           Head: "Water Pipes",
-          link: "/api/tobacco/cigarillos",
+          link: "/api/tobacco/water-pipes",
           sublink: [
             { name: "10 inch", link: "/" },
             { name: "14 inch", link: "/" },
@@ -27,7 +27,7 @@ export const links = [
         },
         {
           Head: "Bubblers",
-          link: "/api/tobacco/cigarillos",
+          link: "/api/tobacco/bubblers",
           sublink: [
             { name: "8 inch", link: "/" },
             { name: "10 inch", link: "/" },
@@ -39,7 +39,7 @@ export const links = [
   
         {
           Head: "Chillums",
-          link: "/api/tobacco/cigarillos",
+          link: "/api/tobacco/chillums",
           sublink: [
             { name: "3 inch", link: "/" },
             { name: "4 inch", link: "/" },
@@ -56,7 +56,7 @@ export const links = [
       sublinks: [
         {
           Head: "Disposable",
-          link: "/api/tobacco/cigarillos",
+          link: "/api/tobacco/disporables",
           sublink: [
             { name: "ElfBar", link: "/" },
             { name: "EscoBar", link: "/" },
@@ -66,7 +66,7 @@ export const links = [
         },
         {
           Head: "E-Juice",
-          link: "/api/tobacco/cigarillos",
+          link: "/api/tobacco/e-juices",
           sublink: [
             { name: "Flavored", link: "/" },
             { name: "Nicotine", link: "/" },
@@ -75,7 +75,7 @@ export const links = [
         },
         {
           Head: "Vaporizers",
-          link: "/api/tobacco/cigarillos",
+          link: "/api/tobacco/vaporizers",
           sublink: [
             { name: "Batteries", link: "/" },
             { name: "Herbal Vapes", link: "/" },
@@ -101,7 +101,7 @@ export const links = [
         },
         {
           Head: "Papers",
-          link: "/api/tobacco/cigarillos",
+          link: "/api/tobacco/papers",
           sublink: [
             { name: "Herbal", link: "/" },
             { name: "Fruit Flavors", link: "/" },
@@ -110,7 +110,7 @@ export const links = [
         },
         {
           Head: "Cigarettes",
-          link: "/api/tobacco/cigarillos",
+          link: "/api/tobacco/cigarettes",
           sublink: [
             { name: "Marlboro", link: "/" },
             { name: "Camel", link: "/" },

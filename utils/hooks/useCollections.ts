@@ -17,13 +17,11 @@ const useCollections = (path: string) => {
   const [filters, setFilters] = React.useState<Filter[]>([]);
   const userUnfiltered = (filters.length === 0 || sort === "")
 
-  const clearProducts = (data: ProductObject[] | []) => {
-    setProducts(data);
-  };
-
-  const clearFilter = () => {
+  const handleClear = () => {
+    setSort("")
     setFilters([]);
-  };
+    setProducts([]);
+  }
 
   const handleSort = (sort: string) => {
     if (!loading) {
@@ -104,11 +102,10 @@ const useCollections = (path: string) => {
   return {
     loading,
     products,
-    clearProducts,
     handleSort,
     getBrands,
-    clearFilter,
     onFilterSelection,
+    handleClear
   };
 };
 

@@ -1,5 +1,5 @@
 export async function retrieve(url: string, options: object = {}) {
-  console.log(url);
+  // console.log(url);
   let response;
   if (!options) {
     response = await fetch(url);
