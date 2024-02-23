@@ -3,8 +3,9 @@
 import Products from "./Products";
 import { ProductPiece } from "@/app/types/GqlProductTypes";
 import Spinner from "../ui/Spinner";
+import { ProductComponent, ProductObject } from "@/app/types/ProductTypes";
 
-const ProductList: React.FC<{ data: ProductPiece[], loading: boolean, sr:string }> = ({
+const ProductList: React.FC<{ data: ProductObject[], loading: boolean, sr:string }> = ({
   data,
   loading,
   sr
@@ -22,11 +23,8 @@ const ProductList: React.FC<{ data: ProductPiece[], loading: boolean, sr:string 
         </section>
       ) : (
         <section className="w-full pt-24 mx-auto justify-center">
-          <p className="dark:hidden font-medium pt-36">
+          <p className="font-medium pt-36">
             <Spinner height={80} width={80} fill="#4D77FF" />
-          </p>
-          <p className="hidden dark:visible font-medium pt-36">
-            <Spinner height={80} width={80} fill="#fff" />
           </p>
         </section>
       )}

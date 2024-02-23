@@ -6,8 +6,9 @@ import { getSS, setSS } from "@/utils/storage";
 import { CartItemType } from "@/app/types/CartItemType";
 import CartAdder from "../Cart/CartAdder";
 import { ProductPiece } from "@/app/types/GqlProductTypes";
+import { ProductObject } from "@/app/types/ProductTypes";
 
-const Products: React.FC<{ data: ProductPiece[] }> = ({ data }) => {
+const Products: React.FC<{ data: ProductObject[] }> = ({ data }) => {
   const [cart, setCart] = React.useState<CartItemType[]>(() => getSS("cart") || []);
   const [inCart, setInCart] = React.useState<boolean>(false);
   const [selected, setSelected] = React.useState("");
@@ -20,7 +21,7 @@ const Products: React.FC<{ data: ProductPiece[] }> = ({ data }) => {
     setSS("cart", cart);
   }, [cart]);
 
-  const add = (meti: ProductPiece) => {
+  const add = (meti: ProductObject) => {
     setSelected(meti.attributes.base[0].name);
     if (cart) {
       addCart(cart, handleCart, meti);
@@ -30,7 +31,7 @@ const Products: React.FC<{ data: ProductPiece[] }> = ({ data }) => {
 
   return (
     <>
-      {data.map((p: ProductPiece) => {
+      {data.map((p: ProductObject) => {
         const { name, price, id } = p.attributes.base[0];
         const image = p.attributes.base[0].image.data[0].attributes.formats.thumbnail;
         const brand = p.attributes.brand.data.attributes.name;

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CartItemType } from "@/app/types/CartItemType";
 import { setSS } from "@/utils/storage";
 import {

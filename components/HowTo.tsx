@@ -5,9 +5,7 @@ import Image from "next/image";
 import arrow from "@/public/images/how_to_arrow.png";
 import Link from "next/link";
 
-type Props = {};
-
-const HowTo = (props: Props) => {
+const HowTo = () => {
   return (
     <div className="max-w-screen-sm lg:max-w-screen-md text-gray-900 bg-white py-10 mx-auto px-4 sm:px-6 lg:px-8">
       <div className="text-center">

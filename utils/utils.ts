@@ -1,11 +1,10 @@
 import { CartItemType } from "@/app/types/CartItemType";
-import { ProductPiece } from "@/app/types/GqlProductTypes";
-
+import { ProductObject } from "@/app/types/ProductTypes";
 
 export const addCart = (
   cart: CartItemType[],
   setCart: (items:CartItemType[])=>void,
-  meti: ProductPiece
+  meti: ProductObject
 ) => {
   let obj: CartItemType;
   const existing = cart.find((i: CartItemType) => i.name === meti.attributes.base[0].name);

@@ -39,7 +39,7 @@ const ConfirmCheckout = ({ customer }: { customer: CustomerType }) => {
         <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md border dark:border-gray-700 my-10">
           <div className="w-full  text-center">
             <p className="text-xl font-medium  text-gray-900 dark:text-white">
-              Mala <span className="text-custo-50">Flor</span>
+              Mala <span className="text-custo-51">Flor</span>
             </p>
             <p className="text-gray-900 dark:text-white">(305) 405-2055</p>
             <p className="text-gray-900 dark:text-white">
@@ -47,9 +47,9 @@ const ConfirmCheckout = ({ customer }: { customer: CustomerType }) => {
             </p>
             <p className="text-gray-900 dark:text-white">
               Order number:{" "}
-              <span className="text-custo-50">#{`${orderIdArr[0]}`}</span>
+              <span className="text-custo-51">#{`${orderIdArr[0]}`}</span>
             </p>
-            <hr className="w-1/3 mx-auto my-2 border-t-2 border-custo-50" />
+            <hr className="w-1/3 mx-auto my-2 border-t-2 border-custo-51" />
           </div>
           <div className="p-2">
             <CustInfoCard customer={customer} />
@@ -63,7 +63,7 @@ const ConfirmCheckout = ({ customer }: { customer: CustomerType }) => {
           </div>
           <div className="flex flex-col items-center md:items-end mt-12 md:mt-6">
             <button
-              className="bg-custo-50 text-white w-full md:w-auto hover:opacity-90 md:text-xl font-medium py-2 px-6 md:py-4 md:px-8 shadow-md rounded-full"
+              className="bg-custo-50 text-white w-full md:w-auto hover:opacity-90 md:text-xl font-medium py-2 px-6 md:py-2 md:px-4 shadow-md rounded-full"
               onClick={() => placeOrder()}
             >
               Place Order

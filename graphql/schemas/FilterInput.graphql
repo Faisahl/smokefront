@@ -1,0 +1,11 @@
+input FilterInput {
+  type: FilterType!
+  value: String!
+}
+
+enum FilterType {
+  BRAND
+  PRICE
+  COLOR
+  # Add more filter types as needed
+}

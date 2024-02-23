@@ -1,17 +1,17 @@
 import { ProductResponse } from "./ProductTypes"
 
-// export type BrandResponse = {
-//   data: BrandObject
-// }
+export type BrandResponse = {
+  data: BrandObject
+}
 
-// export type BrandObject = {
-//   id: number,
-//   attributes: BrandType
-// }
+export type BrandObject = {
+  id: number,
+  attributes: BrandType
+}
 
-// type BrandType = {
-//   name: string
-// }
+type BrandType = {
+  name: string
+}
 
 export type BrandObjResponse = {
   data: BrandObjType[]

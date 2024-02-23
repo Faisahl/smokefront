@@ -49,7 +49,7 @@ const CheckoutButton: React.FC<Props> = ({ data, setter }) => {
         className="bg-custo-50 text-white hover:opacity-90 shadow-sm font-medium md:text-lg text-center py-2 px-4 rounded-full mt-4 w-full"
       >
         {loading ? (
-          <Spinner height={24} width={24} />
+          <Spinner height={24} width={24} fill="#fff" />
         ) : (
           "Checkout"
         )}
