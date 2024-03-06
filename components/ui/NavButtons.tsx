@@ -3,9 +3,9 @@
 import React, { useEffect, useState } from "react";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import Link from "next/link";
-import ButtonUi from "./ui/ButtonUi";
+import ButtonUi from "./ButtonUi";
 
-const Button = () => {
+const NavButtons = () => {
 
   return (
     <>
@@ -25,4 +25,4 @@ const Button = () => {
   );
 };
 
-export default Button;
+export default NavButtons;

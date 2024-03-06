@@ -32,7 +32,7 @@ const useShoppingCart = () => {
     cart: CartItemType[],
     setCart: (items:CartItemType[])=>void,
     meti: ProductObject
-  ) => {
+  ):void => {
     let obj: CartItemType;
     const existing = cart.find((i: CartItemType) => i.name === meti.attributes.base[0].name);
     if (!existing) {
@@ -48,30 +48,43 @@ const useShoppingCart = () => {
       setCart([...cart, obj]);
     } 
     else {
-      updateExistingCartItemQuantity('plus',existing, cart, setCart);
+      increaseExistingItemQuantity(existing, cart, setCart);
     }
   };
 
-  const updateExistingCartItemQuantity = (calc:string , item:CartItemType, data: CartItemType[] ,setter: (data:CartItemType[])=>void) => {
+  const increaseExistingItemQuantity = (item:CartItemType, data: CartItemType[] ,setter: (data:CartItemType[])=>void):void => {
     const newArr = [...data];
     for(let i = 0; i < newArr.length; i++){
-      if(newArr[i].name === item.name && calc === 'plus'){
-        newArr[i].quantity++;
-      }
-      if(newArr[i].name === item.name && calc === 'minus' && newArr[i].quantity > 1){
-        --newArr[i].quantity;
+      if(newArr[i].name === item.name){
+        newArr[i].quantity++
       }
     }
     setter(newArr);
+  }
+
+  const setItemQuantity = (val: string|undefined, prod: CartItemType, setter: (data:CartItemType[])=>void):void => {
+    const n = Number(val);
+    // console.log(n, typeof n)
+    if(n === 0) removeCartItem(prod.name, setter);  
+    const narr = [...cart];
+    const item = narr.findIndex(i => i.name === prod.name);
+    narr[item].quantity = n
+    setter(narr)
   };
+
+  const removeCartItem = (name:string, setter: (data:CartItemType[])=>void):void => {
+    const newCart:CartItemType[] = cart.filter(i => i.name !== name);
+    setCart(newCart);
+  }
 
   return { 
     cart,
-    addToCart,
-    handleCart,
     inCart,
     selected,
-    updateExistingCartItemQuantity
+    addToCart,
+    handleCart,
+    removeCartItem,
+    setItemQuantity
    };
 
 }

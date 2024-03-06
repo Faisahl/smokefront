@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Link from 'next/link'
 import NavLinks from "./NavLinks";
-import Button from "../Button";
+import NavButtons from "../ui/NavButtons";
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import malaflor from '../../public/images/logo-malaflor.png'
@@ -43,7 +43,7 @@ const Navbar = () => {
             <NavLinks />
           </ul>
           <div className="md:block hidden">
-            <Button />
+            <NavButtons />
           </div>
           {/* Mobile nav */}
           <ul
@@ -59,7 +59,7 @@ const Navbar = () => {
             </li>
             <NavLinks isOpen={open} setMenu={setOpen} />
             <div className="py-5">
-              <Button />
+              <NavButtons />
             </div>
           </ul>
         </div>

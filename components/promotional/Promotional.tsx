@@ -27,7 +27,7 @@ const Promotional = () => {
             Ignite the essence of relaxation with our premium hookahs and
             exquisite shisha blends.
           </p>
-          <Link href={"#"} className=" text-custo-51 underline items-center">
+          <Link href={"#"} className=" text-custo-51 dark:text-custo-50 underline items-center">
             Learn More
             <svg
               fill="none"
@@ -57,7 +57,7 @@ const Promotional = () => {
           </p>
           <Link
             href={"/api/tobacco/cigarillos"}
-            className="text-custo-51 underline items-center inline"
+            className="text-custo-51 dark:text-custo-50 underline items-center inline"
           >
             Learn More
             <svg
@@ -88,7 +88,7 @@ const Promotional = () => {
           </p>
           <Link
             href={"#"}
-            className="mt-3 text-custo-51 underline  items-center"
+            className="mt-3 text-custo-51 dark:text-custo-50 underline  items-center"
           >
             Learn More
             <svg

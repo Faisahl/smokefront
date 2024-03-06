@@ -13,26 +13,28 @@ type Props = {
   data?: CartItemType[];
 };
 
-const SideCart: React.FC<{ data?: CartItemType[], subtotal: number, taxes: number, total: number }> = ({data,subtotal,taxes,total}) => {
+const SideCart: React.FC<{ data?: CartItemType[], subtotal: number, taxes: number, total: number }> = ({ data, subtotal, taxes, total }) => {
   const [alert, setAlert] = useState<boolean>(false);
   const [order, setOrder] = useState<OrderType[]>([]);
 
-  const handleAlert = (doIt: boolean) => {
-    setAlert(doIt)
+  const handleAlert = (foo: boolean) => {
+    setAlert(foo)
   }
 
   useEffect(() => {
-    if (!data) {
-      setOrder([]);
-      removeSS("checkout");
-    }
-    if (data && data.length !== 0) {
-      createOrder(data);
-    }
+    // if(data){
+      if (data?.length === 0) {
+        setOrder([]);
+        removeSS("checkout");
+      }
+      if (data && data.length !== 0) {
+        createOrder(data);
+      }
+    // }
   }, [data]);
 
   const createOrder = (items: CartItemType[]) => {
-    if (items) {
+    // if (items.length !== 0) {
       let orderArr: OrderObjectType[] = [];
       items.map((item) => {
         const obj: OrderObjectType = {
@@ -55,7 +57,7 @@ const SideCart: React.FC<{ data?: CartItemType[], subtotal: number, taxes: numbe
         };
         setOrder([checkout]);
       }
-    }
+    // }
   };
 
   return (

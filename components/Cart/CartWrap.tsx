@@ -16,7 +16,7 @@ const CartWrap: React.FC<Props> = ({ children }) => {
             <th className="text-left hidden md:inline-table font-semibold">
               Price
             </th>
-            <th className="text-left font-semibold">Quantity</th>
+            <th className="text-center font-semibold">Quantity</th>
             <th className="text-left font-semibold">Remove?</th>
           </tr>
         </thead>

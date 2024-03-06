@@ -38,7 +38,7 @@ const Sidebar: React.FC<Props> = ({
           <p className="text-gray-900 dark:text-white font-medium text-2xl mb-1">Filters</p>
           <button
             onClick={() => handleClear()}
-            className="text-sm text-custo-51 font-bold"
+            className="text-sm text-custo-50 font-semibold"
           >
             Clear
           </button>

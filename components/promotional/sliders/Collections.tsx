@@ -7,9 +7,10 @@ import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import Link from "next/link";
 
-const Collections = ({ data }: { data: BrandObjType[] }) => {
-  const items: ProductObject[] = data[0].attributes.waterpipes.data;
+const Collections = ({ data, prod }: { data: ProductObject[], prod: string }) => {
+  // const items: ProductObject[] = data[0].attributes.waterpipes.data;
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: false,
     dragFree: true,
@@ -34,7 +35,7 @@ const Collections = ({ data }: { data: BrandObjType[] }) => {
         <div className="embla relative mt-6">
           <div className="embla_viewport overflow-hidden" ref={emblaRef}>
             <div className="embla_container flex">
-              {items.map((item) => {
+              {data.map((item) => {
                 const image =
                   item.attributes.base[0].image.data[0].attributes.formats
                     .medium;
@@ -44,12 +45,14 @@ const Collections = ({ data }: { data: BrandObjType[] }) => {
                     className="embla_slider mx-2 min-w-0 grow-0 shrink-0 basis-1/2 md:basis-1/3 lg:basis-1/4 "
                     // style={{ minWidth: 0, flex: "0 0 25%" }}
                   >
-                    <img
-                      src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${image.url}`}
-                      alt="Grav piece"
-                      className="mx-auto md:mx-0"
-                      width={300}
-                    />
+                    <Link href={`/api/product-view/${prod}/${item.id}`}>
+                      <img
+                        src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${image.url}`}
+                        alt="Grav piece"
+                        className="mx-auto md:mx-0"
+                        width={300}
+                      />
+                    </Link>
                     <div className=" bg-white dark:bg-gray-800 pt-3">
                       <h3 className="font-medium text-md text-gray-900 dark:text-white">
                         {item.attributes.base[0].name}

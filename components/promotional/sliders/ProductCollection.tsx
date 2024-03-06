@@ -2,16 +2,17 @@ import { retrieve } from "@/utils/api";
 import React from "react";
 import Collections from "./Collections";
 import { BrandObjResponse } from "@/app/types/BrandTypes";
+import { ProductResponse } from "@/app/types/ProductTypes";
 
 const ProductCollection = async ({}) => {
-
-  const res: BrandObjResponse = await retrieve(
-    `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/brands?populate[waterpipes][populate][base][populate]=image&filters[name][$eqi]=grav`
+  const sliderProd = 'waterpipes'
+  const res: ProductResponse = await retrieve(
+    `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/${sliderProd}?filters[brand][name][$eqi]=grav&populate[base][populate]=image&populate=brand`
   );
 
   return (
     <>
-      <Collections data={res.data} />
+      <Collections data={res.data} prod={sliderProd} />
     </>
   );
 };

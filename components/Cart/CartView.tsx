@@ -14,10 +14,10 @@ import CartList from "./CartList";
 
 type Props = {
   data: CartItemType[],
-  setter: (data:CartItemType[])=>void
+  setCI: (data:CartItemType[])=>void
 };
 
-const CartView: React.FC<Props> = ({ data, setter }) => {
+const CartView: React.FC<Props> = ({ data, setCI }) => {
   const [subTotal, setSubtotal] = useState<number>(calculateSubTotal(data));
   const [taxes, setTaxes] = useState<number>(calculateTaxes(subTotal));
   const [total, setTotal] = useState<number>(0);
@@ -28,8 +28,8 @@ const CartView: React.FC<Props> = ({ data, setter }) => {
     cartMonitor('cart',data); 
   }, [data,subTotal]);
 
-  const cartMonitor = (ssKey: string, data: CartItemType[]):void => {
-      setSS(ssKey,data);
+  const cartMonitor = (key: string, data: CartItemType[]):void => {
+      setSS(key,data);
       setSubtotal(calculateSubTotal(data));
       setTaxes(calculateTaxes(subTotal));
       setTotal(calculateTotal(subTotal, taxes));
@@ -37,7 +37,7 @@ const CartView: React.FC<Props> = ({ data, setter }) => {
 
   const remove = (name:string):void => {
     const newCart:CartItemType[] = data.filter(i => i.name !== name);
-    setter(newCart);
+    setCI(newCart);
   }
 
   return (
@@ -51,7 +51,7 @@ const CartView: React.FC<Props> = ({ data, setter }) => {
                   <CartList 
                     data={data} 
                     remover={remove} 
-                    setter={setter}
+                    setCI={setCI}
                   />
               </CartWrap>
             </div>

@@ -18,12 +18,10 @@ const page: React.FC = ({}) => {
 
   return (
     <section className="dark:bg-gray-800 h-screen">
-      {/* <AuthProvider> */}
         <CartView 
           data={checkoutItems} 
-          setter={handleCheckoutItems} 
+          setCI={handleCheckoutItems} 
         />
-      {/* </AuthProvider> */}
     </section>
     
   )

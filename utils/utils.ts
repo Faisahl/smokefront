@@ -68,14 +68,15 @@ export const handleAlert = (
   setString?: React.Dispatch<React.SetStateAction<string>>
 ) => {
   setBool(true);
-  if(setString){
-    setTimeout(() => {
-      setBool(false);
+  setTimeout(() => {
+    setBool(false);
+    if(setString){
       setString("");
+    } 
     }, 1000);
-  } else {
-    setTimeout(() => {
-      setBool(false);
-    }, 1000);
-  }
+  // else {
+  //   setTimeout(() => {
+  //     setBool(false);
+  //   }, 1000);
+  // }
 };

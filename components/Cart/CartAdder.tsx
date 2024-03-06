@@ -11,7 +11,7 @@ const CartAdder: React.FC<{ item: ProductObject, cartSet: (arg: ProductObject) =
       <p
         className={`${
           item.attributes.base[0].name === selected ? "inline" : "hidden"
-        } mr-2 text-s text-green-55 font-semibold`}
+        } mr-2 text-s text-green-500 font-semibold`}
       >
         Item Added!
       </p>

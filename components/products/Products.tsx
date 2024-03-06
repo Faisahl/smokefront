@@ -1,9 +1,6 @@
 "use client";
 
 import React from "react";
-import { addCart, handleAlert } from "@/utils/utils";
-import { getSS, setSS } from "@/utils/storage";
-import { CartItemType } from "@/app/types/CartItemType";
 import CartAdder from "../Cart/CartAdder";
 import { ProductObject } from "@/app/types/ProductTypes";
 import { usePathname } from "next/navigation";
@@ -13,7 +10,7 @@ import useShoppingCart from "@/utils/hooks/useShoppingCart";
 const Products: React.FC<{ data: ProductObject[] }> = ({ data }) => {
   const p = usePathname().split("/");
   const path = p[p.length - 1];
-
+  console.log(path)
   const { addToCart, handleCart, selected } = useShoppingCart();
 
   return (

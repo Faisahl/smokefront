@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { HTMLInputTypeAttribute, useRef } from 'react'
 import { CartItemType } from '@/app/types/CartItemType'
 import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
 import useShoppingCart from '@/utils/hooks/useShoppingCart';
@@ -8,11 +8,12 @@ import useShoppingCart from '@/utils/hooks/useShoppingCart';
 type Props = {
   data: CartItemType[],
   remover: (arg: string)=>void,
-  setter: (data:CartItemType[])=>void
+  setCI: (data:CartItemType[])=>void
 }
 
-const CartList: React.FC<Props> = ({ data, remover, setter }) => {
-  const { updateExistingCartItemQuantity } = useShoppingCart()
+const CartList: React.FC<Props> = ({ data, remover, setCI }) => {
+  const { setItemQuantity, removeCartItem } = useShoppingCart()
+  const qtyRef = useRef<HTMLInputElement>(null);
   return (
     <>
       {data.map((item) => (
@@ -32,20 +33,18 @@ const CartList: React.FC<Props> = ({ data, remover, setter }) => {
           </td>
           <td className="py-4 ">{`$${item.price}`}</td>
           <td className="py-4">
-            <div className="flex items-center">
-              <button
-                onClick={() => updateExistingCartItemQuantity('minus',item,data,setter)}
-                className="border rounded-md py-2 px-4 mr-2"
-              >
-                -
-              </button>
-              <span className="text-center w-8">{item.quantity}</span>
-              <button
-                onClick={() => updateExistingCartItemQuantity('plus',item,data,setter)}
-                className="border rounded-md py-2 px-4 ml-2"
-              >
-                +
-              </button>
+            <div className="flex justify-center">
+              <input 
+                ref={qtyRef}
+                type="text" 
+                name="qty" 
+                id="qty" 
+                // inputMode='numeric'  
+                pattern='[0-9]*' 
+                defaultValue={item.quantity}
+                className='border rounded-md text-center w-14 px-1'
+                onBlur={()=>setItemQuantity(qtyRef.current?.value, item, setCI)}
+              />
             </div>
           </td>
           <td className="py-4 px-6 text-red-500">

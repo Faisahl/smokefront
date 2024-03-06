@@ -1,10 +1,13 @@
+// 'use client'
+
+import Custom404 from '@/components/errors/404'
 import React from 'react'
 
 type Props = {}
 
 const page: React.FC = ({}) => {
   return (
-    <div>Tobacco main page</div>
+    <Custom404 />
   )
 }
 
