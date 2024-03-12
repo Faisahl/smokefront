@@ -4,6 +4,8 @@ import { usePathname } from "next/navigation";
 import ProductList from "@/components/products/ProductList";
 import Sidebar from "@/components/products/sidebar/Sidebar";
 import useCollections from "@/utils/hooks/useCollections";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 const page: React.FC<{}> = ({}) => {
   const p = usePathname().split("/");
@@ -20,7 +22,7 @@ const page: React.FC<{}> = ({}) => {
   const brands = [...getBrands(products)];
 
   return (
-    <section className="bg-white dark:bg-gray-800 h-screen">
+    <section className="bg-white dark:bg-gray-800 h-full">
       <div className="container bg-white dark:bg-gray-800 ">
         <div className="w-full flex flex-col lg:flex-row">
           <div className="lg:w-1/4 ">
@@ -32,11 +34,13 @@ const page: React.FC<{}> = ({}) => {
             />
           </div>
           <div className="lg:w-3/4 ">
-            <ProductList 
-              data={products} 
-              loading={loading} 
-              sr={path} 
-            />
+            <Suspense fallback={ <Loading /> }>
+              <ProductList 
+                data={products} 
+                loading={loading} 
+                sr={path} 
+              />
+            </Suspense>
           </div>
         </div>
       </div>

@@ -7,12 +7,12 @@ import useShoppingCart from '@/utils/hooks/useShoppingCart';
 
 type Props = {
   data: CartItemType[],
-  remover: (arg: string)=>void,
   setCI: (data:CartItemType[])=>void
+  removeCI: (i:string)=>void
+  setQty: (i: string|undefined, j: CartItemType, setter: (data:CartItemType[])=>void)=>void
 }
 
-const CartList: React.FC<Props> = ({ data, remover, setCI }) => {
-  const { setItemQuantity, removeCartItem } = useShoppingCart()
+const CartList: React.FC<Props> = ({ data, setCI, removeCI, setQty }) => {
   const qtyRef = useRef<HTMLInputElement>(null);
   return (
     <>
@@ -42,13 +42,13 @@ const CartList: React.FC<Props> = ({ data, remover, setCI }) => {
                 // inputMode='numeric'  
                 pattern='[0-9]*' 
                 defaultValue={item.quantity}
-                className='border rounded-md text-center w-14 px-1'
-                onBlur={()=>setItemQuantity(qtyRef.current?.value, item, setCI)}
+                className='border rounded-md text-center w-14 px-1 text-gray-900 font-semibold'
+                onBlur={()=>setQty(qtyRef.current?.value, item, setCI)}
               />
             </div>
           </td>
           <td className="py-4 px-6 text-red-500">
-            <span onClick={()=>remover(item.name)} className="cursor-pointer">
+            <span onClick={()=>removeCI(item.name)} className="cursor-pointer">
               <RemoveShoppingCartIcon />
             </span>
           </td>

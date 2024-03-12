@@ -1,12 +1,47 @@
-import React from 'react'
-import ProductContainer from '@/components/products/ProductContainer';
+"use client";
 
-type Props = {}
+import { usePathname } from "next/navigation";
+import ProductList from "@/components/products/ProductList";
+import Sidebar from "@/components/products/sidebar/Sidebar";
+import useCollections from "@/utils/hooks/useCollections";
 
-const page = ({params}: {params: {slug: string}}) => {
+const page: React.FC<{}> = ({}) => {
+  const p = usePathname().split("/");
+  const path = p[p.length - 1];
+
+  const { 
+    loading, 
+    products, 
+    handleSort,
+    getBrands, 
+    onFilterSelection,
+    handleClear 
+  } = useCollections(path);
+  const brands = [...getBrands(products)];
+
   return (
-    <ProductContainer path={params.slug} />
-  )
-}
+    <section className="bg-white dark:bg-gray-800 h-full">
+      <div className="container bg-white dark:bg-gray-800 ">
+        <div className="w-full flex flex-col lg:flex-row">
+          <div className="lg:w-1/4 ">
+            <Sidebar 
+              setSort={handleSort} 
+              brands={brands} 
+              setFilterSelection={onFilterSelection} 
+              handleClear={handleClear}
+            />
+          </div>
+          <div className="lg:w-3/4 ">
+            <ProductList 
+              data={products} 
+              loading={loading} 
+              sr={path} 
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
 
-export default page
+export default page;

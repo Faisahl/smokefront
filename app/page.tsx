@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 
 import ReviewSet from "@/components/reviews/ReviewSet";
 import Hero from "@/components/hero/Hero";

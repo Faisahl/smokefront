@@ -17,22 +17,13 @@ const CheckoutButton: React.FC<Props> = ({ data, setter }) => {
   const [loading, setLoading] = React.useState<boolean>(false);
   const router = useRouter();
 
-  // useEffect(() => {
-  // if (data && data?.length !== 0) {
-  //   setSS("checkout", data);
-  // }
-  // if (data?.length === 0) {
-  //   removeSS("checkout");
-  // }
-  // }, [data]);
-
   const beginCheckout = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
 
     if (data?.length === 0) {
       handleAlert(setter);
     }
-    if (data?.length !== 0) {
+    if (data && data.length !== 0) {
       setLoading(true);
       setSS("checkout", data);
       setCookie("isAuth", String(true));

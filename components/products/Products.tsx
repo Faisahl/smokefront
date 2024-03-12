@@ -10,7 +10,7 @@ import useShoppingCart from "@/utils/hooks/useShoppingCart";
 const Products: React.FC<{ data: ProductObject[] }> = ({ data }) => {
   const p = usePathname().split("/");
   const path = p[p.length - 1];
-  console.log(path)
+  // console.log(path)
   const { addToCart, handleCart, selected } = useShoppingCart();
 
   return (
@@ -18,8 +18,7 @@ const Products: React.FC<{ data: ProductObject[] }> = ({ data }) => {
       {data.map((p: ProductObject) => {
         const { id } = p;
         const { name, price } = p.attributes.base[0];
-        const image =
-          p.attributes.base[0].image.data[0].attributes.formats.thumbnail;
+        const image = p.attributes.base[0].image.data[0].attributes.formats.thumbnail;
         const brand = p.attributes.brand.data.attributes.name;
         return (
           <div

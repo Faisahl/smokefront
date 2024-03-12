@@ -5,6 +5,7 @@ import CheckoutButton from "./CheckoutButton";
 import { CartItemType } from "@/app/types/CartItemType";
 import { removeSS } from "@/utils/storage";
 import { OrderObjectType, OrderType } from "@/app/types/OrderTypes";
+import useCartCalc from "@/utils/hooks/useCartCalc";
 
 type Props = {
   subtotal: number;
@@ -13,51 +14,54 @@ type Props = {
   data?: CartItemType[];
 };
 
-const SideCart: React.FC<{ data?: CartItemType[], subtotal: number, taxes: number, total: number }> = ({ data, subtotal, taxes, total }) => {
+const SideCart: React.FC<{
+  data?: CartItemType[];
+  subtotal: number;
+  taxes: number;
+  total: number;
+}> = ({ data, subtotal,taxes,total }) => {
   const [alert, setAlert] = useState<boolean>(false);
   const [order, setOrder] = useState<OrderType[]>([]);
-
+ 
   const handleAlert = (foo: boolean) => {
-    setAlert(foo)
-  }
+    setAlert(foo);
+  };
 
   useEffect(() => {
-    // if(data){
-      if (data?.length === 0) {
-        setOrder([]);
-        removeSS("checkout");
-      }
-      if (data && data.length !== 0) {
-        createOrder(data);
-      }
-    // }
+    if (data === undefined) {
+      setOrder([]);
+      removeSS("checkout");
+    }
+    if (data && data.length !== 0) {
+      createOrder(data);
+    }
   }, [data]);
 
   const createOrder = (items: CartItemType[]) => {
-    // if (items.length !== 0) {
-      let orderArr: OrderObjectType[] = [];
-      items.map((item) => {
-        const obj: OrderObjectType = {
-          itemId: item.id,
-          name: item.name,
-          brand: item.brand,
-          price: item.price,
-          sku: item.sku,
-          quantity: item.quantity,
-          orderSubtotal: subtotal,
-          orderTaxes: taxes,
-          orderTotal: total,
-        };
-        orderArr.push(obj);
-      });
-      if (orderArr.length !== 0) {
-        const checkout: OrderType = {
-          orderId: self.crypto.randomUUID(),
-          cart: orderArr,
-        };
-        setOrder([checkout]);
-      }
-    // }
+    let orderArr: OrderObjectType[] = [];
+
+    items.map((item) => {
+      const obj: OrderObjectType = {
+        itemId: item.id,
+        name: item.name,
+        brand: item.brand,
+        price: item.price,
+        sku: item.sku,
+        quantity: item.quantity,
+        orderSubtotal: subtotal,
+        orderTaxes: taxes,
+        orderTotal: total,
+      };
+      orderArr.push(obj);
+    });
+
+    if (orderArr.length !== 0) {
+      const checkout: OrderType = {
+        orderId: self.crypto.randomUUID(),
+        cart: orderArr,
+      };
+      setOrder([checkout]);
+    }
   };
 
   return (

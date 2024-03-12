@@ -36,32 +36,32 @@
 //   setter(newArr);
 // };
 
-export const calculateTaxes = (subtotal: number): number => {
-  if (subtotal !== 0) {
-    const i: number = subtotal * 0.06; // fake sales tax
-    const j: number = subtotal * 0.03; // fake credit card tax
-    const k: number = subtotal * 0.07; // fake fake tax
+// export const calculateTaxes = (subtotal: number): number => {
+//   if (subtotal !== 0) {
+//     const i: number = subtotal * 0.06; // fake sales tax
+//     const j: number = subtotal * 0.03; // fake credit card tax
+//     const k: number = subtotal * 0.07; // fake fake tax
 
-    return parseFloat((i + j + k).toFixed(2));
-  }
-  return 0;
-};
+//     return parseFloat((i + j + k).toFixed(2));
+//   }
+//   return 0;
+// };
 
-export const calculateSubTotal = (items: any): number => {
-  if (items) {
-    let j: number = items.reduce(
-      (sum: number, { price, quantity }: { price: number; quantity: number }) =>
-        sum + price * quantity, 0
-    );
-    return parseFloat(j.toFixed(2));
-  }
-  return 0;
-};
+// export const calculateSubTotal = (items: any): number => {
+//   if (items) {
+//     let j: number = items.reduce(
+//       (sum: number, { price, quantity }: { price: number; quantity: number }) =>
+//         sum + price * quantity, 0
+//     );
+//     return parseFloat(j.toFixed(2));
+//   }
+//   return 0;
+// };
 
-export const calculateTotal = (subtotal: number, tax: number) => {
-  if(!subtotal || !tax) return 0;
-  return parseFloat((subtotal + tax).toFixed(2));
-};
+// export const calculateTotal = (subtotal: number, tax: number) => {
+//   if(!subtotal || !tax) return 0;
+//   return parseFloat((subtotal + tax).toFixed(2));
+// };
 
 export const handleAlert = (
   setBool: (data:boolean)=>void,
@@ -74,9 +74,4 @@ export const handleAlert = (
       setString("");
     } 
     }, 1000);
-  // else {
-  //   setTimeout(() => {
-  //     setBool(false);
-  //   }, 1000);
-  // }
 };

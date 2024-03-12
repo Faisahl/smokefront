@@ -5,7 +5,7 @@ export const links = [
       sublinks: [
         {
           Head: "Water Pipes",
-          link: "/api/tobacco/water-pipes",
+          link: "/api/tobacco/waterpipes",
           sublink: [
             { name: "10 inch", link: "/" },
             { name: "14 inch", link: "/" },
