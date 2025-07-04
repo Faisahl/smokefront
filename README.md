@@ -1,10 +1,10 @@
 # Retail Pickup System
 
-A modern web application that enables customers to pre-order products for convenient pickup, streamlining the in-store experience with a "pay and go" model.
+A modern web application that enables customers to pre-order products for convenient pickup, streamlining the in-store experience with a "pay and go" model. 
 
 ## Overview
 
-This application allows customers to browse products, place orders online, and schedule pickup times. Orders are prepared in advance, enabling customers to simply arrive, pay, and collect their items without waiting.
+This application allows customers to browse products, place orders online, and schedule pickup times. Orders are prepared in advance, enabling customers to simply arrive, pay, and collect their items without waiting. Various Assets also made by me using Photopea. 
 
 ## Technology Stack
 
